@@ -1,3 +1,6 @@
+//implementar objeto para hacer una tabla hash
+
+
 public class Flores<T> {
     private String nombre;
     private int cantidad;
