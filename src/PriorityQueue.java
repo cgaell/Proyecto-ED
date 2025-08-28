@@ -14,11 +14,11 @@ public boolean isEmpty() {
     return datos == null || datos.length == 0;
 }
 
-    public void push(int priority, String valor){
+    public void push(int priority, T valor){
 
         //creamos  nodo a insertar
 
-        PriorityNode nodoDeEntrada = new PriorityNode(priority, valor);
+        PriorityNode<T> nodoDeEntrada = new PriorityNode<>(priority, valor);
 
         //aumentamos el tamaño de la cola priorizada
 
@@ -97,7 +97,7 @@ public boolean isEmpty() {
     return root;
 }
 
-private void heapify(int posicion) {
+    private void heapify(int posicion) {
     int hijoIzq = 2 * posicion; // Índice del hijo izquierdo
     int hijoDer = 2 * posicion + 1; // Índice del hijo derecho
     int mayor = posicion;
@@ -122,8 +122,9 @@ private void heapify(int posicion) {
         heapify(mayor);
     }
 }
-
-
+    public void getheapify(int posicion) {
+    heapify(posicion);
+}
 
 public PriorityNode<T> peek() {
     if (isEmpty()) {
@@ -132,5 +133,15 @@ public PriorityNode<T> peek() {
     }
     return datos[0];
 
+}
+
+    public int getSize() {
+    return size;
+}
+public PriorityNode<T>[] getDatos() {
+    return datos;
+}
+public void setSize(int size) {
+    this.size = size;
 }
 }

@@ -5,11 +5,13 @@ public class Flores<T> {
     private String nombre;
     private int cantidad;
     private T tipoDeFlor;
+    private double precio;
 
-    public Flores(String nombre, int cantidad, T tipoDeFlor) {
+    public Flores(String nombre, int cantidad, T tipoDeFlor, double precio) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.tipoDeFlor = tipoDeFlor;
+        this.precio = precio;
     }
 
     public String getNombre() {
@@ -34,5 +36,12 @@ public class Flores<T> {
 
     public void setTipoDeFlor(T tipoDeFlor) {
         this.tipoDeFlor = tipoDeFlor;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }
