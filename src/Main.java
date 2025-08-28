@@ -121,14 +121,27 @@ public class Main {
                             System.out.println("No hay pedidos.");
                             break;
                         }
+
+                        // Encabezado de tabla
+                        System.out.println("+----+-----------------+-----------------+-------------+-----------+");
+                        System.out.printf("| %-2s | %-15s | %-15s | %-11s | %-9s |\n",
+                                "ID", "Nombre", "Dirección", "Teléfono", "Prioridad");
+                        System.out.println("+----+-----------------+-----------------+-------------+-----------+");
+
+                        // Filas con datos
                         for (int i = 0; i < pedidos.getSize(); i++) {
                             PriorityNode<Cliente> p = pedidos.getDatos()[i];
                             if (p != null) {
                                 Cliente c = p.getDatos();
-                                System.out.println((i + 1) + ". " + c.getNombre() + " - " + c.getDireccion() +
-                                        " - " + c.getTelefono() + " (Prioridad: " + p.getPriority() + ")");
+                                System.out.printf("| %-2d | %-15s | %-15s | %-11s | %-9d |\n",
+                                        (i + 1), c.getNombre(), c.getDireccion(),
+                                        c.getTelefono(), p.getPriority());
                             }
                         }
+
+                        // Línea final
+                        System.out.println("+----+-----------------+-----------------+-------------+-----------+");
+
                     } catch (Exception e) {
                         System.out.println("Error al mostrar pedidos: " + e.getMessage());
                     }
@@ -143,6 +156,5 @@ public class Main {
                     System.out.println("Opción no válida.");
             }
         }
-        
     }
 }
