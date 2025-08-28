@@ -7,11 +7,15 @@ public class Main {
 
         // Crear catálogo de flores
         SimpleLinkedList<Flores<String>> catalogo = new SimpleLinkedList<>();
-        catalogo.insertarCola(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 8, "Girasoles", 250.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Rosas", 30, "Rosas", 350.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 20, "Girasoles", 250.0));
         catalogo.insertarCola(new Flores<>("Ramo de Tulipanes", 12, "Tulipanes", 300.0));
         catalogo.insertarCola(new Flores<>("Ramo Mixto", 5, "Variado", 400.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Lirios", 10, "Lirios", 200.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Orquídeas", 12, "Orquídeas", 1000.0));
+        catalogo.insertarCola(new Flores<>("Ramo de 100 Rosas", 2, "Rosas", 2000.0));
 
+        
         // Cola de prioridad para pedidos
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
 
@@ -30,10 +34,10 @@ public class Main {
                 opcion = sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes ingresar un número del 1 al 5.");
-                sc.nextLine(); // Limpiar buffer
+                sc.nextLine(); 
                 continue;
             }
-            sc.nextLine(); // limpiar buffer
+            sc.nextLine(); 
 
             switch (opcion) {
                 case 1:
