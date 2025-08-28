@@ -136,13 +136,13 @@ public class Main {
 
                 case 5:
                     salir = true;
-                    System.out.println("Saliendo del sistema...");
+                    System.out.println("Salida ejecutada correctamente.");
                     break;
 
                 default:
                     System.out.println("Opción no válida.");
             }
         }
-        sc.close();
+        
     }
 }

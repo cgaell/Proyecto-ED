@@ -106,6 +106,18 @@ public class SimpleLinkedList<T> {
         }
           return false;  
     }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node<T> actual = cabeza;
+        while (actual != null) {
+            sb.append(actual.getDatos());
+            if (actual.getNext() != null) {
+                sb.append(" -> ");
+            }
+            actual = actual.getNext();
+        }
+        return sb.toString();
+    }
 
         
 }
