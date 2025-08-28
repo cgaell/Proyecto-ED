@@ -12,7 +12,7 @@ public class Main {
         catalogo.insertarCola(new Flores<>("Ramo de Tulipanes", 12, "Tulipanes", 300.0));
         catalogo.insertarCola(new Flores<>("Ramo Mixto", 5, "Variado", 400.0));
         catalogo.insertarCola(new Flores<>("Tulipanes Blancos", 10, "Rosas", 750.0));
-        catalogo.insertarCola(new Flores<>("Manojos margaritas blancas", 10, "margaritas", 200.0));
+        catalogo.insertarCola(new Flores<>("Manojos Margaritas Blancas", 10, "Margaritas", 200.0));
         catalogo.insertarCola(new Flores<>("Manojos de Gypsophila", 10, "Gypsophila", 150.0));
         catalogo.insertarCola(new Flores<>("Violetas", 25, "Violetas", 350.0));
         catalogo.insertarCola(new Flores<>("Orquideas", 10, "Orquideas", 480.0));
@@ -188,3 +188,5 @@ public class Main {
                     System.out.println("Opción no válida.");
             }
         }
+    }
+}
