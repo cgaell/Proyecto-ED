@@ -7,15 +7,23 @@ public class Main {
 
         // Crear catálogo de flores
         SimpleLinkedList<Flores<String>> catalogo = new SimpleLinkedList<>();
-        catalogo.insertarCola(new Flores<>("Ramo de Rosas", 30, "Rosas", 350.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 20, "Girasoles", 250.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
+        catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 8, "Girasoles", 250.0));
         catalogo.insertarCola(new Flores<>("Ramo de Tulipanes", 12, "Tulipanes", 300.0));
         catalogo.insertarCola(new Flores<>("Ramo Mixto", 5, "Variado", 400.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Lirios", 10, "Lirios", 200.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Orquídeas", 12, "Orquídeas", 1000.0));
-        catalogo.insertarCola(new Flores<>("Ramo de 100 Rosas", 2, "Rosas", 2000.0));
+        catalogo.insertarCola(new Flores<>("Tulipanes Blancos", 10, "Rosas", 750.0));
+        catalogo.insertarCola(new Flores<>("Manojos margaritas blancas", 10, "margaritas", 200.0));
+        catalogo.insertarCola(new Flores<>("Manojos de Gypsophila", 10, "Gypsophila", 150.0));
+        catalogo.insertarCola(new Flores<>("Violetas", 25, "Violetas", 350.0));
+        catalogo.insertarCola(new Flores<>("Orquideas", 10, "Orquideas", 480.0));
+        catalogo.insertarCola(new Flores<>("Crisantemos Blancos", 15, "Crisantemos", 380.0));
+        catalogo.insertarCola(new Flores<>("Gerberas", 20, "Gerberas", 350.0));
+        catalogo.insertarCola(new Flores<>("Lirios", 459, "Lirios", 459.0));
+        catalogo.insertarCola(new Flores<>("Claveles", 25, "Claveles", 390.0));
+        catalogo.insertarCola(new Flores<>("Gladiolas", 420, "Gladiolas", 420.0));
+        catalogo.insertarCola(new Flores<>("Lilas", 25, "Lilas", 425.0));
+        catalogo.insertarCola(new Flores<>("Peonias", 10, "Peoinas", 3800.));
 
-        
         // Cola de prioridad para pedidos
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
 
@@ -34,10 +42,10 @@ public class Main {
                 opcion = sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes ingresar un número del 1 al 5.");
-                sc.nextLine(); 
+                sc.nextLine(); // Limpiar buffer
                 continue;
             }
-            sc.nextLine(); 
+            sc.nextLine(); // limpiar buffer
 
             switch (opcion) {
                 case 1:
@@ -114,9 +122,29 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("=== Catálogo de Flores ===");
-                    catalogo.mostrarLista();
-                    break;
+                System.out.println("=== Catálogo de Flores ===");
+            
+                // Encabezado de tabla
+                System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
+                        "ID", "Nombre", "Cantidad", "Tipo", "Precio");
+                System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+            
+                // Recorrer lista enlazada
+                Node<Flores<String>> nodo = catalogo.getCabeza();
+                int contador = 1;
+                while (nodo != null) {
+                    Flores<String> f = nodo.getDatos();
+                    System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
+                            contador, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
+                    nodo = nodo.getNext();
+                    contador++;
+                }
+            
+                // Línea final
+                System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                break;
+            
 
                 case 4:
                     System.out.println("=== Pedidos Actuales ===");
@@ -160,5 +188,3 @@ public class Main {
                     System.out.println("Opción no válida.");
             }
         }
-    }
-}
