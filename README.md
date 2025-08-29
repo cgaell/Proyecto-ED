@@ -21,6 +21,9 @@ En este proyecto se implementó un sistema para una florería usando estructuras
     * Agregar cliente (pide nombre, teléfono, dirección, urgente Sí/No), listar por prioridad (urgentes primero) y eliminar por nombre.
 * **Catálogo (lista enlazada)**:
     * Imprimir ~19 tipos de flores con descripción y precio en consola (ej.: 25 rosas amarillas — 380, 10 peonias — 3800).
+* **Pila (stack)**:
+   * Guardar todos los pedidos para poder mostrarlos en el historial
+ 
 
 __¿Cómo compilar el programa?__
 
