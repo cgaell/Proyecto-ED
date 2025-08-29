@@ -2,7 +2,7 @@
 
 #Día N. Sistema de Flores
 
-En este ejercicio se solicitó implementar un sistema para una florería usando estructuras de datos en Java: Pila, Cola, Cola con Prioridad, Lista Ligada y HashTable.
+En este proyecto implementara un sistema para una florería usando estructuras de datos en Java: Pila, Cola, Cola con Prioridad, Lista Ligada y HashTable.
 Clases principales: Main, Cliente, Flores, Stack, Queue, PriorityQueue, PriorityNode, SimpleLinkedList, Node, HashTable.
 
 #Cómo compilar el programa
