@@ -27,6 +27,7 @@ public class Main {
         // Cola de prioridad para pedidos
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
 
+        Stack<Cliente> historial = new Stack<>();
         boolean salir = false;
         while (!salir) {
             System.out.println("\n=== Sistema de Gestión de Pedidos de Florería ===");
@@ -89,6 +90,7 @@ public class Main {
                         int prioridad = (urgente == 1) ? 1 : 2;
                         pedidos.push(prioridad, cliente);
                         System.out.println("Pedido agregado con éxito.");
+                        historial.push(cliente);
 
                     } catch (InputMismatchException e) {
                         System.out.println("Error: Entrada inválida, asegúrate de ingresar números donde corresponda.");
@@ -183,6 +185,33 @@ public class Main {
                     salir = true;
                     System.out.println("Salida ejecutada correctamente.");
                     break;
+                
+                case 6:
+                 System.out.println("=== Historial de Pedidos ===");
+                if (historial.isEmpty()) {
+                    System.out.println("No hay historial de pedidos.");
+                    break;
+                }
+
+                // Encabezado de tabla
+                System.out.println("+----+-----------------+-----------------+-------------+");
+                System.out.printf("| %-2s | %-15s | %-15s | %-11s |\n",
+                        "ID", "Nombre", "Dirección", "Teléfono");
+                System.out.println("+----+-----------------+-----------------+-------------+");
+
+                // Mostrar los pedidos almacenados en el stack
+                Node<Cliente> nodoHist = historial.getDatos().getCabeza();
+                int idHist = 1;
+                while (nodoHist != null) {
+                    Cliente c = nodoHist.getDatos();
+                    System.out.printf("| %-2d | %-15s | %-15s | %-11s |\n",
+                            idHist, c.getNombre(), c.getDireccion(), c.getTelefono());
+                    nodoHist = nodoHist.getNext();
+                    idHist++;
+                }
+
+                System.out.println("+----+-----------------+-----------------+-------------+");
+                break;
 
                 default:
                     System.out.println("Opción no válida.");
