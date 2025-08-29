@@ -35,7 +35,9 @@ public class Main {
             System.out.println("2. Eliminar pedido por nombre");
             System.out.println("3. Consultar catálogo de flores");
             System.out.println("4. Mostrar todos los pedidos");
-            System.out.println("5. Salir");
+            System.out.println("5. Ver historial de pedidos");
+            System.out.println("6. Salir");
+            System.out.println("7. Procesar pedido");
             System.out.print("Selecciona una opción: ");
 
             int opcion = 0;
@@ -181,12 +183,12 @@ public class Main {
                     }
                     break;
 
-                case 5:
+                case 6:
                     salir = true;
                     System.out.println("Salida ejecutada correctamente.");
                     break;
-                
-                case 6:
+
+                case 5:
                  System.out.println("=== Historial de Pedidos ===");
                 if (historial.isEmpty()) {
                     System.out.println("No hay historial de pedidos.");
@@ -212,6 +214,30 @@ public class Main {
 
                 System.out.println("+----+-----------------+-----------------+-------------+");
                 break;
+
+                case 7:
+                    System.out.println("=== Procesar Pedido ===");
+                    if (pedidos.getSize() == 0) {
+                        System.out.println("No hay pedidos para procesar.");
+                        break;
+                    }
+
+                    try {
+                        // Sacamos el pedido con mayor prioridad (el primero en la cola)
+                        PriorityNode<Cliente> pedidoProcesado = pedidos.pop(); // asumimos que tienes método pop o similar
+                        Cliente c = pedidoProcesado.getDatos();
+                        System.out.println("Pedido procesado:");
+                        System.out.println("Nombre: " + c.getNombre());
+                        System.out.println("Dirección: " + c.getDireccion());
+                        System.out.println("Teléfono: " + c.getTelefono());
+                        System.out.println("Prioridad: " + pedidoProcesado.getPriority());
+
+                        // No hace falta agregar al historial, porque ya se guardó cuando se creó el pedido
+
+                    } catch (Exception e) {
+                        System.out.println("Error al procesar el pedido: " + e.getMessage());
+                    }
+                    break;
 
                 default:
                     System.out.println("Opción no válida.");

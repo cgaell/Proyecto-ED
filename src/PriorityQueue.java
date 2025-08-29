@@ -82,16 +82,16 @@ public boolean isEmpty() {
     }
 
     // Guardamos el nodo de mayor prioridad (la raíz del heap)
-    PriorityNode<T> root = datos[1]; // La raíz siempre está en la posición 1
+    PriorityNode<T> root = datos[0]; // La raíz siempre está en la posición 0
 
     // Colocamos el último nodo en la raíz
-    datos[1] = datos[size]; // Intercambiamos el último nodo con la raíz
+    datos[0] = datos[size - 1]; // Intercambiamos el último nodo con la raíz
 
     // Reducimos el tamaño de la cola
     size--;
 
     // Hacemos el "heapify" para reorganizar el heap
-    heapify(1); // Reorganizamos desde la raíz (índice 1)
+    heapify(0); // Reorganizamos desde la raíz (índice 0)
 
     // Devolvemos el nodo extraído
     return root;
