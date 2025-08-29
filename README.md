@@ -4,7 +4,7 @@ Ejercicios de la clase ED de la semana 01
 
 Día N. Sistema de Flores
 
-En este ejercicio se implementó un sistema para una florería usando estructuras de datos en Java solo con lo que ya funciona:
+En este proyecto se implementó un sistema para una florería usando estructuras de datos en Java solo con lo que ya funciona:
 
 Pedidos con prioridad (PriorityQueue): agregar cliente (pide nombre, teléfono, dirección, urgente Sí/No), listar por prioridad (urgentes primero) y eliminar por nombre.
 
