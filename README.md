@@ -33,7 +33,10 @@ javac -d bin -encoding UTF-8 src/*.java
  ``` 
 > -d bin → indica que los compilados van a la carpeta bin.
 __O también puedes__:
-> cd Directorio/al/que/se/encuentra/la/carpeta
+ ``` bash
+ cd Directorio/al/que/se/encuentra/la/carpeta
+ ```
+
 * Después, consultar los archivos de la carpeta con:
    ``` bash
    dir
