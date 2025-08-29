@@ -1,20 +1,26 @@
-#Ejercicios de la clase ED – Sistema de Flores
+EjerciciosEstructuraDatos
 
-#Día N. Sistema de Flores
+Ejercicios de la clase ED de la semana 01
 
-En este proyecto implementara un sistema para una florería usando estructuras de datos en Java: Pila, Cola, Cola con Prioridad, Lista Ligada y HashTable.
-Clases principales: Main, Cliente, Flores, Stack, Queue, PriorityQueue, PriorityNode, SimpleLinkedList, Node, HashTable.
+Día N. Sistema de Flores
 
-#Cómo compilar el programa
+En este ejercicio se implementó un sistema para una florería usando estructuras de datos en Java solo con lo que ya funciona:
+
+Pedidos con prioridad (PriorityQueue): agregar cliente (pide nombre, teléfono, dirección, urgente Sí/No), listar por prioridad (urgentes primero) y eliminar por nombre.
+
+Catálogo (lista ligada): imprimir ~19 flores con descripción y precio en consola (ej.: 25 rosas amarillas — 380, 10 peonias — 3800).
+
+Como compilar el programa
+
+En la terminal, ubicarse en la carpeta del proyecto y ejecutar:
+
 javac -d bin -encoding UTF-8 src/*.java
 
 -d bin → indica que los compilados van a la carpeta bin.
 
 src/*.java → compila todas las clases dentro de src.
 
-Si usas paquetes, ajusta rutas (ej. src/modelos/*.java src/app/Main.java).
-
-#Cómo ejecutar el programa
+Como ejecutar el programa
 
 En la terminal, ubicarse en la carpeta del proyecto y ejecutar:
 
@@ -22,4 +28,4 @@ java -cp bin Main
 
 -cp bin → usa la carpeta bin como classpath.
 
-Main → clase principal (si tienes paquete, usa paquete.Main).
+Main → clase principal del proyecto.
