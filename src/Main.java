@@ -8,10 +8,14 @@ public class Main {
     public static final String ANSI_AMARILLO = "\u001B[33m";
     public static final String ANSI_AZUL = "\u001B[34m";
 
+    /**
+     * Logica principal del codigo
+     * @param args todo lo que se va a implementar dentro (default)
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Crear catálogo de flores
+        
         SimpleLinkedList<Flores<String>> catalogo = new SimpleLinkedList<>();
         catalogo.insertarCola(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
         catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 8, "Girasoles", 250.0));
@@ -30,7 +34,7 @@ public class Main {
         catalogo.insertarCola(new Flores<>("Lilas", 25, "Lilas", 425.0));
         catalogo.insertarCola(new Flores<>("Peonias", 10, "Peoinas", 3800.));
 
-        // Cola de prioridad para pedidos
+        
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
 
         Stack<Cliente> historial = new Stack<>();
@@ -38,7 +42,7 @@ public class Main {
         boolean salir = false;
         while (!salir) {
 
-            // --- Menú principal ---
+            
             System.out.println("\n" + ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.println(ANSI_AZUL + "                  FLORERIA GMC      " + ANSI_RESET);
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -58,10 +62,10 @@ public class Main {
                 opcion = sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 7." + ANSI_RESET);
-                sc.nextLine(); // Limpiar buffer
+                sc.nextLine();    
                 continue;
             }
-            sc.nextLine(); // limpiar buffer
+            sc.nextLine(); 
 
             switch (opcion) {
                 case 1:
