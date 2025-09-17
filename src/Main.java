@@ -16,23 +16,23 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         
-        SimpleLinkedList<Flores<String>> catalogo = new SimpleLinkedList<>();
-        catalogo.insertarCola(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Girasoles", 8, "Girasoles", 250.0));
-        catalogo.insertarCola(new Flores<>("Ramo de Tulipanes", 12, "Tulipanes", 300.0));
-        catalogo.insertarCola(new Flores<>("Ramo Mixto", 5, "Variado", 400.0));
-        catalogo.insertarCola(new Flores<>("Tulipanes Blancos", 10, "Rosas", 750.0));
-        catalogo.insertarCola(new Flores<>("Manojos Margaritas Blancas", 10, "Margaritas", 200.0));
-        catalogo.insertarCola(new Flores<>("Manojos de Gypsophila", 10, "Gypsophila", 150.0));
-        catalogo.insertarCola(new Flores<>("Violetas", 25, "Violetas", 350.0));
-        catalogo.insertarCola(new Flores<>("Orquideas", 10, "Orquideas", 480.0));
-        catalogo.insertarCola(new Flores<>("Crisantemos Blancos", 15, "Crisantemos", 380.0));
-        catalogo.insertarCola(new Flores<>("Gerberas", 20, "Gerberas", 350.0));
-        catalogo.insertarCola(new Flores<>("Lirios", 459, "Lirios", 459.0));
-        catalogo.insertarCola(new Flores<>("Claveles", 25, "Claveles", 390.0));
-        catalogo.insertarCola(new Flores<>("Gladiolas", 420, "Gladiolas", 420.0));
-        catalogo.insertarCola(new Flores<>("Lilas", 25, "Lilas", 425.0));
-        catalogo.insertarCola(new Flores<>("Peonias", 10, "Peoinas", 3800.));
+        HashTable<Flores<String>> catalogo = new HashTable<>(23);
+        catalogo.insertar(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
+        catalogo.insertar(new Flores<>("Ramo de Girasoles", 8, "Girasoles", 250.0));
+        catalogo.insertar(new Flores<>("Ramo de Tulipanes", 12, "Tulipanes", 300.0));
+        catalogo.insertar(new Flores<>("Ramo Mixto", 5, "Variado", 400.0));
+        catalogo.insertar(new Flores<>("Tulipanes Blancos", 10, "Rosas", 750.0));
+        catalogo.insertar(new Flores<>("Manojos Margaritas Blancas", 10, "Margaritas", 200.0));
+        catalogo.insertar(new Flores<>("Manojos de Gypsophila", 10, "Gypsophila", 150.0));
+        catalogo.insertar(new Flores<>("Violetas", 25, "Violetas", 350.0));
+        catalogo.insertar(new Flores<>("Orquideas", 10, "Orquideas", 480.0));
+        catalogo.insertar(new Flores<>("Crisantemos Blancos", 15, "Crisantemos", 380.0));
+        catalogo.insertar(new Flores<>("Gerberas", 20, "Gerberas", 350.0));
+        catalogo.insertar(new Flores<>("Lirios", 459, "Lirios", 459.0));
+        catalogo.insertar(new Flores<>("Claveles", 25, "Claveles", 390.0));
+        catalogo.insertar(new Flores<>("Gladiolas", 420, "Gladiolas", 420.0));
+        catalogo.insertar(new Flores<>("Lilas", 25, "Lilas", 425.0));
+        catalogo.insertar(new Flores<>("Peonias", 10, "Peoinas", 3800.));
 
         
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
@@ -79,13 +79,18 @@ public class Main {
                         String telefono = sc.nextLine();
 
                         System.out.println("Selecciona el tipo de ramo:");
-                        Node<Flores<String>> actual = catalogo.getCabeza();
+
+                        
                         int index = 1;
-                        while (actual != null) {
-                            Flores<String> f = actual.getDatos();
-                            System.out.println(index + ". " + f.getNombre() + " - $" + f.getPrecio());
-                            actual = actual.getNext();
-                            index++;
+                        Node<Flores<String>> nodoActual;
+                        for (int i = 0; i < catalogo.getTabla().length; i++) {
+                            nodoActual = catalogo.getTabla()[i].getCabeza();
+                            while (nodoActual != null) {
+                                Flores<String> f = nodoActual.getDatos();
+                                System.out.println(index + ". " + f.getNombre() + " - $" + f.getPrecio());
+                                nodoActual = nodoActual.getNext();
+                                index++;
+                            }
                         }
 
                         System.out.print("Número de ramo: ");
@@ -119,6 +124,7 @@ public class Main {
                     }
                     break;
 
+
                 case 2:
                     System.out.println(ANSI_AZUL + "\n=== Eliminar Pedido ===" + ANSI_RESET);
                     System.out.print("Ingresa el nombre del cliente a eliminar: ");
@@ -148,17 +154,21 @@ public class Main {
                     System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
                             "ID", "Nombre", "Cantidad", "Tipo", "Precio");
                     System.out.println("+----+-----------------------------+-----------+----------------+---------+");
-                    Node<Flores<String>> nodo = catalogo.getCabeza();
-                    int contador = 1;
-                    while (nodo != null) {
-                        Flores<String> f = nodo.getDatos();
-                        System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
+                     int contador = 1;
+                    Node<Flores<String>> nodo;
+                    for (int i = 0; i < catalogo.getTabla().length; i++) {
+                        nodo = catalogo.getTabla()[i].getCabeza();
+                        while (nodo != null) {
+                            Flores<String> f = nodo.getDatos();
+                            System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
                                 contador, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
-                        nodo = nodo.getNext();
-                        contador++;
-                    }
-                    System.out.println("+----+-----------------------------+-----------+----------------+---------+");
-                    break;
+                                nodo = nodo.getNext();
+                                contador++;
+                            }
+                        }
+
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                        break;
 
                 case 4:
                     System.out.println(ANSI_AZUL + "\n=== Pedidos Actuales ===" + ANSI_RESET);
