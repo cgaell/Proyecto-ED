@@ -47,8 +47,9 @@ public class Main {
             System.out.println("| 3. Consultar catálogo de flores               |");
             System.out.println("| 4. Mostrar todos los pedidos                  |");
             System.out.println("| 5. Ver historial de pedidos                   |");
-            System.out.println("| 6. Salir                                      |");
-            System.out.println("| 7. Procesar pedido                             |");
+            System.out.println("| 6. Procesar pedido                             |");
+            System.out.println("| 0. Salir                                      |");
+            
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.print("Selecciona una opción: ");
 
@@ -200,12 +201,7 @@ public class Main {
                     break;
 
                 case 6:
-                    salir = true;
-                    System.out.println(ANSI_AMARILLO + "\nSalida ejecutada correctamente." + ANSI_RESET);
-                    break;
-
-                case 7:
-                    System.out.println(ANSI_AZUL + "\n=== Procesar Pedido ===" + ANSI_RESET);
+                System.out.println(ANSI_AZUL + "\n=== Procesar Pedido ===" + ANSI_RESET);
                     if (pedidos.getSize() == 0) {
                         System.out.println(ANSI_ROJO + "No hay pedidos para procesar." + ANSI_RESET);
                         break;
@@ -221,6 +217,12 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println(ANSI_ROJO + "Error al procesar el pedido: " + e.getMessage() + ANSI_RESET);
                     }
+                    break;
+                    
+
+                case 0:
+                    salir = true;
+                    System.out.println(ANSI_AMARILLO + "\nSalida ejecutada correctamente." + ANSI_RESET);
                     break;
 
                 default:
