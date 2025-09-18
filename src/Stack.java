@@ -1,5 +1,10 @@
 
 
+public class Stack<T> {
+     //asignar la capacidad del arreglo en la pila
+    //en este caso es infinito
+
+    private SimpleLinkedList<T> datos;
 
     //inicializar atributos
     
