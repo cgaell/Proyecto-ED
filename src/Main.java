@@ -52,8 +52,9 @@ public class Main {
             System.out.println("| 3. Consultar catálogo de flores               |");
             System.out.println("| 4. Mostrar todos los pedidos                  |");
             System.out.println("| 5. Ver historial de pedidos                   |");
-            System.out.println("| 6. Procesar pedido                             |");
-            System.out.println("| 7. Imprimir arbol n-ario de pedidos                                      |");
+            System.out.println("| 6. Procesar pedido                            |");
+            System.out.println("| 7. Imprimir arbol n-ario de pedidos           |");
+            System.out.println("| 8. Buscar pedido por nombre                   |");
             System.out.println("| 0. Salir                                      |");
             
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -155,9 +156,13 @@ public class Main {
                             }
                         }
 
-                            if (arbolpedidos != null && arbolpedidos.eliminarPorNombre(nombreEliminar)){
-                                System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente del arbol" + ANSI_RESET);
-                                encontrado = true;
+                            if (arbolpedidos != null) {
+                                if (arbolpedidos.getDatos().getNombre().equalsIgnoreCase(nombreEliminar)) {
+                                    arbolpedidos = null; // eliminar raíz
+                                    encontrado = true;
+                                } else if (arbolpedidos.eliminarPorNombre(nombreEliminar)) {
+                                    encontrado = true;
+                                }
                             }
                         if (!encontrado) 
                         System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
