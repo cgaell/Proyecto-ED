@@ -35,10 +35,6 @@ public class Cliente {
         this.telefono = telefono;
     }
     public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return "Cliente{" + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
     }
 }
