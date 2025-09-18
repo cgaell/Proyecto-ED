@@ -33,7 +33,7 @@ public class Main {
         catalogo.insertar(new Flores<>("Claveles", 25, "Claveles", 390.0));
         catalogo.insertar(new Flores<>("Gladiolas", 420, "Gladiolas", 420.0));
         catalogo.insertar(new Flores<>("Lilas", 25, "Lilas", 425.0));
-        catalogo.insertar(new Flores<>("Peonias", 10, "Peoinas", 3800.));
+        catalogo.insertar(new Flores<>("Peonias", 10, "Peoinas", 900.));
 
         
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
