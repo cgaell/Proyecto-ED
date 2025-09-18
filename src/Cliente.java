@@ -34,4 +34,11 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
 }

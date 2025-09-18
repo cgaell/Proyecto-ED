@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Node<T> {
@@ -10,16 +11,20 @@ public class Node<T> {
         this.datos = datos;
         this.siguiente = siguiente;
         this.anterior = anterior;
-        this.hijos = hijos;
+        this.hijos = 
+        (hijos!=null) ? hijos : new ArrayList<>();
+
     }
     public Node(T datos) {
         this.datos = datos;
+        this.hijos = new ArrayList<>();
         
     }
 
     public Node(T datos, Node<T> siguiente) {
         this.datos = datos;
         this.siguiente = siguiente;
+        this.hijos = new ArrayList<>();
     }
     public Node<T> getNext() {
         return siguiente;
@@ -55,6 +60,26 @@ public class Node<T> {
         }
         return false;
     }
+    public boolean eliminarPorNombre(String nombre) {
+    for (int i = 0; i < hijos.size(); i++) {
+        Node<T> hijo = hijos.get(i);
+        if (hijo.getDatos() instanceof Cliente cliente && 
+            cliente.getNombre().equalsIgnoreCase(nombre)) {
+            hijos.remove(i);
+            return true;
+        } else if (hijo.eliminarPorNombre(nombre)) {
+            return true;
+        }
+    }
+    return false;
+}
+    public void imprimirArbol(String arbol) {
+    System.out.println(arbol + datos);  
+    for (Node<T> hijo : hijos) {
+        hijo.imprimirArbol(arbol + "  "); 
+    }
+}
+
 
 
 }

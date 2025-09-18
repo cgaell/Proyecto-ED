@@ -53,6 +53,7 @@ public class Main {
             System.out.println("| 4. Mostrar todos los pedidos                  |");
             System.out.println("| 5. Ver historial de pedidos                   |");
             System.out.println("| 6. Procesar pedido                             |");
+            System.out.println("| 7. Imprimir arbol n-ario de pedidos                                      |");
             System.out.println("| 0. Salir                                      |");
             
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -120,7 +121,9 @@ public class Main {
                             arbolpedidos = nuevoPedido;
                         } else {
                             arbolpedidos.agregarHijos(nuevoPedido);
+                            
                         }
+                        
 
                         historial.push(cliente);
                         System.out.println(ANSI_AMARILLO + "Pedido agregado con éxito." + ANSI_RESET);
@@ -152,7 +155,7 @@ public class Main {
                             }
                         }
 
-                            if (arbolpedidos != null && eliminarPedidoarbol (arbolpedidos, nombreEliminar)){
+                            if (arbolpedidos != null && arbolpedidos.eliminarPorNombre(nombreEliminar)){
                                 System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente del arbol" + ANSI_RESET);
                                 encontrado = true;
                             }
@@ -245,6 +248,13 @@ public class Main {
                         System.out.println("Prioridad: " + pedidoProcesado.getPriority());
                     } catch (Exception e) {
                         System.out.println(ANSI_ROJO + "Error al procesar el pedido: " + e.getMessage() + ANSI_RESET);
+                    }
+                    break;
+                    case 7:
+                    if (arbolpedidos == null) {
+                        System.out.println(ANSI_ROJO + "NO HAY PEDIDOS QUE MOSTRAR" + ANSI_RESET);
+                    } else {
+                        arbolpedidos.imprimirArbol("");
                     }
                     break;
                     
