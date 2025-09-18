@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>FloresApp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #c89398;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #5d1227;
+      margin-bottom: 18px;
+    }
+
+    details {
+      background: #f6f5ec;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    summary {
+      padding: 14px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      outline: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "▸";
+      transform: rotate(0deg);
+      transition: transform .18s ease;
+    }
+    details[open] summary::after {
+      transform: rotate(90deg);
+    }
+
+    details[open] summary {
+      background: #c8f5d2;
+    }
+
+    .panel {
+      padding: 12px 16px 18px 16px;
+      border-left: 3px solid #294a38;
+      background: #fff;
+    }
+
+    pre {
+      background: #f6f5ec;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 8px 0;
+      white-space: pre-wrap;
+    }
+
+    ul { margin: 8px 0 8px 20px; }
+  </style>
+</head>
+<body>
+  <h1 style="font-size: 40px;">𝓕𝓵𝓸𝓻𝓮𝓻𝓲𝓪 - 𝓜𝓪𝓷𝓾𝓪𝓵 𝓭𝓮 𝓤𝓼𝓾𝓪𝓻𝓲𝓸</h1>
+
+  <hr>
+
+  <details>
+    <summary>𝟏. ¿𝐐𝐮é 𝐞𝐬 𝐞𝐬𝐭𝐞 𝐩𝐫𝐨𝐠𝐫𝐚𝐦𝐚?</summary>
+    <div class="panel">
+      <p>Es un programa hecho en <strong>Java</strong> que sirve para interactuar con los clientes, flores y diferentes estructuras (<em>colas, pilas, listas, etc.</em>).</p>
+      <p>Piensa que es como una tienda de flores mágica, pero en tu computadora</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟐. 𝐂𝐨𝐬𝐚𝐬 𝐪𝐮𝐞 𝐧𝐞𝐜𝐞𝐬𝐢𝐭𝐚𝐬 𝐚𝐧𝐭𝐞𝐬 𝐝𝐞 𝐞𝐦𝐩𝐞𝐳𝐚𝐫</summary>
+    <div class="panel">
+      <ul>
+        <li><strong>Java 8 o más nuevo</strong>. Para revisar: <pre>java -version</pre></li>
+        <li>Archivos <code>.java</code> del proyecto:
+          <pre>Stack.java
+Queue.java
+PriorityQueue.java
+PriorityNode.java
+Cliente.java
+Flores.java
+HashTable.java
+Node.java
+Floresapp.html
+SimpleLinkedList.java
+Main.java</pre>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟑. 𝐏𝐫𝐞𝐩𝐚𝐫𝐚𝐫 𝐥𝐚 𝐜𝐚𝐫𝐩𝐞𝐭𝐚</summary>
+    <div class="panel">
+      <p>1. Crea una carpeta en tu Escritorio llamada <strong>Floresapp</strong>.</p>
+      <p>2. Mete todos los archivos <code>.java</code> dentro de esa carpeta.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟒. 𝐂𝐨𝐦𝐩𝐢𝐥𝐚𝐫 𝐞𝐥 𝐩𝐫𝐨𝐠𝐫𝐚𝐦𝐚</summary>
+    <div class="panel">
+      <p>Abre la terminal y escribe:</p>
+      <pre>cd ~/Desktop/FloresApp
+javac *.java</pre>
+      <p>Si no aparece nada, significa que todo salió bien</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟓. 𝐄𝐣𝐞𝐜𝐮𝐭𝐚𝐫 𝐞𝐥 𝐩𝐫𝐨𝐠𝐫𝐚𝐦𝐚</summary>
+    <div class="panel">
+      <pre>java Main</pre>
+      <p>Verás el menú principal del programa.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟔. ¿𝐂ó𝐦𝐨 𝐢𝐧𝐭𝐞𝐫𝐚𝐜𝐭ú𝐚𝐫 𝐜𝐨𝐧 𝐞𝐥 𝐜𝐨𝐝𝐢𝐠𝐨?</summary>
+    <div class="panel">
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>1</strong> → Si eliges la opción 1, podras realizar pedidos. Se pedirá el <i>nombre</i> del cliente, número, dirección, tipo de flores y si el pedido es urgente.
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>2</strong> → En el número 2, puedes eliminar cualquier pedido. Solo introduce el nombre del cliente, si no hay clientes registrados, aparecerá una advertencia.
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>3</strong> → Si quieres ver toda la lista y catalogos de flores, la opción 3 te muestra el catálogo de flores junto con sus nombres y precios.
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>4</strong> → En la opción 4, se muestran todos los pedidos completados.
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>5</strong> → Aquí podrás ver pedidos en tres estados: pendientes, realizados y futuros.
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>6</strong> → Observa los pedidos que están en proceso (pendientes de completar).
+        </li>
+        <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
+          <strong>0</strong> → Cierra el sistema.
+        </li>
+      </ul>
+    </div>
+  </details>
+  
+
+  <details>
+    <summary>𝟕. 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+    <div class="panel">
+      <pre>                    ===== MENÚ PRINCIPAL =====
+        | 1. Realizar pedido                            |
+        | 2. Eliminar pedido por nombre                 |
+        | 3. Consultar catálogo de flores               |
+        | 4. Mostrar todos los pedidos                  |
+        | 5. Ver historial de pedidos                   |
+        | 6. Procesar pedido                            |
+        | 0. Salir </pre>
+      <p>Selecciona el número y presiona Enter en la terminal.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>𝟖. 𝐂𝐨𝐧𝐬𝐞𝐣𝐨𝐬</summary>
+    <div class="panel">
+      <ul>
+        <li>Si te equivocas con un número, vuelve a elegir la opción correcta.</li>
+        <li>Siempre que quieras parar, escribe <strong>0</strong>.</li>
+        <li>No necesitas internet para usarlo — solo Java y tu computadora </li>
+      </ul>
+      <p> Listo, ahora deberías poder abrir y leer cada sección con un clic</p>
+    </div>
+  </details>
+
+</body>
+</html>
+
+
