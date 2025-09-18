@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     // Colores ANSI para consola
+    static Node<Cliente> arbolpedidos = null;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ROJO = "\u001B[31m";
     public static final String ANSI_AMARILLO = "\u001B[33m";
@@ -113,6 +114,14 @@ public class Main {
                         Cliente cliente = new Cliente(nombre, direccion, telefono);
                         int prioridad = (urgente == 1) ? 1 : 2;
                         pedidos.push(prioridad, cliente);
+                        //Agregar al arbol n-ario para buscarlo
+                        Node<Cliente> nuevoPedido = new Node<> (cliente);
+                        if (arbolpedidos == null){
+                            arbolpedidos = nuevoPedido;
+                        } else {
+                            arbolpedidos.agregarHijos(nuevoPedido);
+                        }
+
                         historial.push(cliente);
                         System.out.println(ANSI_AMARILLO + "Pedido agregado con éxito." + ANSI_RESET);
 
@@ -142,7 +151,13 @@ public class Main {
                                 break;
                             }
                         }
-                        if (!encontrado) System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
+
+                            if (arbolpedidos != null && eliminarPedidoarbol (arbolpedidos, nombreEliminar)){
+                                System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente del arbol" + ANSI_RESET);
+                                encontrado = true;
+                            }
+                        if (!encontrado) 
+                        System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
                     } catch (Exception e) {
                         System.out.println(ANSI_ROJO + "Error al eliminar pedido: " + e.getMessage() + ANSI_RESET);
                     }
