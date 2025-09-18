@@ -29,7 +29,7 @@ public class Main {
         catalogo.insertar(new Flores<>("Orquideas", 10, "Orquideas", 480.0));
         catalogo.insertar(new Flores<>("Crisantemos Blancos", 15, "Crisantemos", 380.0));
         catalogo.insertar(new Flores<>("Gerberas", 20, "Gerberas", 350.0));
-        catalogo.insertar(new Flores<>("Lirios", 459, "Lirios", 459.0));
+        catalogo.insertar(new Flores<>("Lirios", 45, "Lirios", 459.0));
         catalogo.insertar(new Flores<>("Claveles", 25, "Claveles", 390.0));
         catalogo.insertar(new Flores<>("Gladiolas", 420, "Gladiolas", 420.0));
         catalogo.insertar(new Flores<>("Lilas", 25, "Lilas", 425.0));
@@ -64,7 +64,7 @@ public class Main {
             try {
                 opcion = sc.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 7." + ANSI_RESET);
+                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 8." + ANSI_RESET);
                 sc.nextLine();    
                 continue;
             }
@@ -139,37 +139,47 @@ public class Main {
 
 
                 case 2:
-                    System.out.println(ANSI_AZUL + "\n=== Eliminar Pedido ===" + ANSI_RESET);
-                    System.out.print("Ingresa el nombre del cliente a eliminar: ");
-                    String nombreEliminar = sc.nextLine();
-                    boolean encontrado = false;
-                    try {
-                        for (int i = 0; i < pedidos.getSize(); i++) {
-                            PriorityNode<Cliente> p = pedidos.getDatos()[i];
-                            if (p != null && p.getDatos().getNombre().equalsIgnoreCase(nombreEliminar)) {
-                                pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1]; 
-                                pedidos.setSize(pedidos.getSize() - 1);
-                                pedidos.getheapify(i);
-                                encontrado = true;
-                                System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente." + ANSI_RESET);
-                                break;
-                            }
-                        }
+                System.out.println(ANSI_AZUL + "\n=== Eliminar Pedido ===" + ANSI_RESET);
+                System.out.print("Ingresa el nombre del cliente a eliminar: ");
+                String nombreEliminar = sc.nextLine().toLowerCase();
+                boolean encontrado = false;
 
-                            if (arbolpedidos != null) {
-                                if (arbolpedidos.getDatos().getNombre().equalsIgnoreCase(nombreEliminar)) {
-                                    arbolpedidos = null; // eliminar raíz
-                                    encontrado = true;
-                                } else if (arbolpedidos.eliminarPorNombre(nombreEliminar)) {
-                                    encontrado = true;
-                                }
-                            }
-                        if (!encontrado) 
-                        System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
-                    } catch (Exception e) {
-                        System.out.println(ANSI_ROJO + "Error al eliminar pedido: " + e.getMessage() + ANSI_RESET);
+                try {
+                    
+                    for (int i = 0; i < pedidos.getSize(); i++) {
+                        PriorityNode<Cliente> p = pedidos.getDatos()[i];
+                        if (p != null && p.getDatos().getNombre().toLowerCase().equals(nombreEliminar)) {
+                            pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1]; 
+                            pedidos.setSize(pedidos.getSize() - 1);
+                            pedidos.getheapify(i);
+                            encontrado = true;
+                            System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente." + ANSI_RESET);
+                            break;
+                        }
                     }
-                    break;
+
+                    
+                    if (arbolpedidos != null) {
+                        Node<Cliente> nuevaRaiz = arbolpedidos.eliminarRaiz(nombreEliminar);
+                        if (nuevaRaiz != null) {
+                            arbolpedidos = nuevaRaiz;
+                            System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente del arbol" + ANSI_RESET);
+                        } else {
+                            arbolpedidos = null;
+                            System.out.println(ANSI_AMARILLO + "Pedido raiz eliminado, arbol vacio." + ANSI_RESET);
+                        }
+                        encontrado = true;
+                    }
+
+                    if (!encontrado) {
+                        System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(ANSI_ROJO + "Error al eliminar pedido: " + e.getMessage() + ANSI_RESET);
+                }
+                break;
+
 
                 case 3:
                     System.out.println(ANSI_AZUL + "\n=== Catálogo de Flores ===" + ANSI_RESET);
@@ -263,7 +273,27 @@ public class Main {
                     }
                     break;
                     
+                    case 8:
+                    if (arbolpedidos == null) {
+                        System.out.println(ANSI_ROJO + "No hay pedidos registrados." + ANSI_RESET);
+                        break;
+                    }
 
+                    System.out.print("Ingresa el nombre del cliente a buscar: ");
+                    String nombreBuscar = sc.nextLine();
+
+                    Node<Cliente> resultado = arbolpedidos.buscarPorNombre(nombreBuscar);
+
+                    if (resultado != null) {
+                        Cliente c = resultado.getDatos();
+                        System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET);
+                        System.out.println("Nombre: " + c.getNombre());
+                        System.out.println("Dirección: " + c.getDireccion());
+                        System.out.println("Teléfono: " + c.getTelefono());
+                    } else {
+                        System.out.println(ANSI_ROJO + "No se encontró ningún cliente con ese nombre." + ANSI_RESET);
+                    }
+                    break;
                 case 0:
                     salir = true;
                     System.out.println(ANSI_AMARILLO + "\nSalida ejecutada correctamente." + ANSI_RESET);
