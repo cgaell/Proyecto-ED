@@ -37,7 +37,7 @@ public class FloreriaGUI extends JFrame {
     private static Node<Cliente> arbolpedidos;    // árbol de pedidos (raíz)
 
     // Componentes UI
-    private JTextField txtNombre, txtDireccion, txtTelefono;
+    private JTextField txtID, txtNombre, txtDireccion, txtTelefono;
     private JSpinner spPrioridad;
     private JComboBox<String> cbRamo;
     private JTable tablaCatalogo, tablaCola, tablaHistorial;
@@ -128,7 +128,8 @@ public class FloreriaGUI extends JFrame {
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(6, 6, 6, 6);
         gc.anchor = GridBagConstraints.WEST;
-
+        
+        txtID = new JTextField(18);
         txtNombre = new JTextField(18);
         txtDireccion = new JTextField(18);
         txtTelefono = new JTextField(14);
@@ -139,6 +140,9 @@ public class FloreriaGUI extends JFrame {
         spPrioridad = new JSpinner(new SpinnerNumberModel(5, 1, 10, 1));
 
         int row = 0;
+        gc.gridx = 0; gc.gridy = row; form.add(new JLabel("ID del cliente:"), gc);
+        gc.gridx = 1; form.add(txtID, gc); row++;
+
         gc.gridx = 0; gc.gridy = row; form.add(new JLabel("Nombre del cliente:"), gc);
         gc.gridx = 1; form.add(txtNombre, gc); row++;
 
@@ -275,17 +279,18 @@ public class FloreriaGUI extends JFrame {
     // === Acciones ===
 
     private void accionAgregarPedido(ActionEvent e) {
+        int id = txtID.getText().trim();
         String nombre = txtNombre.getText().trim();
         String direccion = txtDireccion.getText().trim();
         String telefono = txtTelefono.getText().trim();
 
-        if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Completa nombre, dirección y teléfono.", "Faltan datos", JOptionPane.WARNING_MESSAGE);
+        if (id.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Completa ID, nombre, dirección y teléfono.", "Faltan datos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         int prioridad = (int) spPrioridad.getValue();
-        Cliente c = new Cliente(nombre, direccion, telefono);
+        Cliente c = new Cliente(ID, nombre, direccion, telefono);
 
         // Cola con prioridad
         pedidos.push(prioridad, c);

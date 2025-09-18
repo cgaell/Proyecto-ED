@@ -1,11 +1,13 @@
 //objeto para usar colas con prioridad
 
 public class Cliente {
+    private int ID;
     private String nombre;
     private String direccion;
     private String telefono;
 
-    public Cliente(String nombre, String direccion, String telefono) {
+    public Cliente(int ID, String nombre, String direccion, String telefono) {
+        this.ID = ID;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -34,7 +36,15 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID){
+        this.ID = ID;
+    }
     public String toString() {
-        return "Cliente{" + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
+        return "Cliente{"+ "ID="  + "nombre=" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
     }
 }
