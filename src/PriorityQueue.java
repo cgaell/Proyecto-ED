@@ -1,5 +1,3 @@
-
-
 public class PriorityQueue<T> {
     private PriorityNode<T>[] datos;
     private int size;
@@ -16,7 +14,7 @@ public boolean isEmpty() {
 
     public void push(int priority, T valor){
 
-        //creamos  nodo a insertar
+        // nodo a insertar
 
         PriorityNode<T> nodoDeEntrada = new PriorityNode<>(priority, valor);
 
@@ -118,7 +116,7 @@ public boolean isEmpty() {
         datos[posicion] = datos[mayor];
         datos[mayor] = temp;
 
-        // Recursión para asegurar que la estructura del heap se mantenga
+        // Recursión para asegurar que la estructura del heap 
         heapify(mayor);
     }
 }
