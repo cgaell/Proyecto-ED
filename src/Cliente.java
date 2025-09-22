@@ -1,7 +1,3 @@
-package com.mycompany.floreriaap;
-
-import java.time.LocalDateTime;
-
 /**
  * Cliente 
  * - ID incremental garantizado (no se repite durante la ejecución).
