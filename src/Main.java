@@ -113,7 +113,7 @@ public class Main {
                             break;
                         }
 
-                        Cliente cliente = new Cliente(ID , nombre, direccion, telefono);
+                        Cliente cliente = new Cliente(nombre, direccion, telefono);
                         int prioridad = (urgente == 1) ? 1 : 2;
                         pedidos.push(prioridad, cliente);
                         //Agregar al arbol n-ario para buscarlo
