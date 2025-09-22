@@ -60,18 +60,21 @@ public class Node<T> {
         }
         return false;
     }
-    public boolean eliminarPorNombre(String nombre) {
-    for (int i = 0; i < hijos.size(); i++) {
-        Node<T> hijo = hijos.get(i);
-        if (datos instanceof Cliente cliente && cliente.getNombre().toLowerCase().equalsIgnoreCase(nombre)) {
-            hijos.remove(i);
-            return true;
-        } else if (hijo.eliminarPorNombre(nombre)) {
-            return true;
+   public boolean eliminarPorNombre(String nombre) {
+        for (int i = 0; i < hijos.size(); i++) {
+            Node<T> hijo = hijos.get(i);
+            if (datos instanceof Cliente) {
+                Cliente cliente = (Cliente) datos;  // Casting explícito
+                if (cliente.getNombre().toLowerCase().equalsIgnoreCase(nombre)) {
+                    hijos.remove(i);
+                    return true;
+                }
+            } else if (hijo.eliminarPorNombre(nombre)) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
     public void imprimirArbol(String arbol) {
     System.out.println(arbol + datos);  
     for (Node<T> hijo : hijos) {
@@ -80,9 +83,11 @@ public class Node<T> {
     }
 
     public Node<T> buscarPorNombre(String nombre) {
-        // Verifica si el nodo actual coincide con el nombre
-        if (datos instanceof Cliente cliente && cliente.getNombre().toLowerCase().equalsIgnoreCase(nombre)) {
-            return this;
+        if (datos instanceof Cliente) {
+            Cliente cliente = (Cliente) datos;  // Casting explícito
+            if (cliente.getNombre().toLowerCase().equalsIgnoreCase(nombre)) {
+                return this;
+            }
         }
         for (Node<T> hijo : hijos) {
             Node<T> encontrado = hijo.buscarPorNombre(nombre);
@@ -90,21 +95,26 @@ public class Node<T> {
                 return encontrado;
             }
         }
-
         return null;
-}
-        public Node<T> eliminarRaiz (String nombre){
+    }
+
+         public Node<T> eliminarRaiz(String nombre) {
         nombre = nombre.toLowerCase();
-        if (datos instanceof Cliente cliente && cliente.getNombre().toLowerCase().equals(nombre))
-        if (hijos.isEmpty()){
-            return null;
-        } else {
-        Node<T> nuevaRaiz = hijos.remove(0);
-        nuevaRaiz.getHijos().addAll(hijos);
-        hijos.clear();
-        return nuevaRaiz;
+        if (datos instanceof Cliente) {
+            Cliente cliente = (Cliente) datos;  // Casting explícito
+            if (cliente.getNombre().toLowerCase().equals(nombre)) {
+                if (hijos.isEmpty()) {
+                    return null;
+                } else {
+                    Node<T> nuevaRaiz = hijos.remove(0);
+                    nuevaRaiz.getHijos().addAll(hijos);
+                    hijos.clear();
+                    return nuevaRaiz;
+                }
+            }
         }
         eliminarPorNombre(nombre);
-        return this;   
+        return this;
     }
 }
+
