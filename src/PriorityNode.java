@@ -1,5 +1,4 @@
 
-
 public class PriorityNode<T> {
     private int priority;
     private T datos;
