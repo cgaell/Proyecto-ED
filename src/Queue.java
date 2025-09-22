@@ -1,4 +1,3 @@
-
 public class Queue<T> {
     
     SimpleLinkedList<T> datos;
