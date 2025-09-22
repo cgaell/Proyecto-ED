@@ -1,3 +1,6 @@
+/**
+ *
+ */
 //implementar objeto para hacer una tabla hash
 
 

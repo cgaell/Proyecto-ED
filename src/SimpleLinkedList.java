@@ -1,6 +1,3 @@
-
-
-
 public class SimpleLinkedList<T> {
 	private Node<T> cabeza;
 	public SimpleLinkedList() {
@@ -120,11 +117,3 @@ public class SimpleLinkedList<T> {
 
         
 }
-
-	
-
-        
-    
-
-
-

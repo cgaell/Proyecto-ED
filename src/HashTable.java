@@ -1,5 +1,4 @@
 
-
 public class HashTable<T> {
     private SimpleLinkedList<T>[] tabla;
     private int capacidad;
@@ -41,4 +40,3 @@ public class HashTable<T> {
     return tabla;
 } 
     }
-
