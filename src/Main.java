@@ -37,6 +37,12 @@ public class Main {
 
 
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
+        pedidos.push(1, new Cliente(1, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(1, new Cliente(2, "Carlos Sanchez", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(1, new Cliente(3, "Rogelio Martinez", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(2, new Cliente(4, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(2, new Cliente(5, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(2, new Cliente(6, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
 
         Stack<Cliente> historial = new Stack<>();
 
@@ -48,13 +54,13 @@ public class Main {
             System.out.println(ANSI_AZUL + "                  FLORERIA GMC      " + ANSI_RESET);
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.println("| 1. Realizar pedido                            |");
-            System.out.println("| 2. Eliminar pedido por nombre                 |");
+            System.out.println("| 2. Eliminar pedido por ID                     |");
             System.out.println("| 3. Consultar catálogo de flores               |");
             System.out.println("| 4. Mostrar todos los pedidos                  |");
             System.out.println("| 5. Ver historial de pedidos                   |");
             System.out.println("| 6. Procesar pedido                            |");
-            System.out.println("| 7. Imprimir arbol n-ario de pedidos           |");
-            System.out.println("| 8. Buscar pedido por nombre                   |");
+            System.out.println("| 7. Ver Informacion de la empresa              |");
+            System.out.println("| 8. Buscar pedido por ID                       |");
             System.out.println("| 0. Salir                                      |");
 
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -112,18 +118,11 @@ public class Main {
                             System.out.println(ANSI_ROJO + "Error: Debes ingresar 1 o 2." + ANSI_RESET);
                             break;
                         }
-
-                        Cliente cliente = new Cliente(nombre, direccion, telefono);
+                        int idCliente = Cliente.getID();
                         int prioridad = (urgente == 1) ? 1 : 2;
+                        Cliente cliente = new Cliente(idCliente, nombre, direccion, telefono, prioridad);
+                        
                         pedidos.push(prioridad, cliente);
-                        //Agregar al arbol n-ario para buscarlo
-                        Node<Cliente> nuevoPedido = new Node<> (cliente);
-                        if (arbolpedidos == null){
-                            arbolpedidos = nuevoPedido;
-                        } else {
-                            arbolpedidos.agregarHijos(nuevoPedido);
-
-                        }
 
 
                         historial.push(cliente);
@@ -140,15 +139,22 @@ public class Main {
 
                 case 2:
                 System.out.println(ANSI_AZUL + "\n=== Eliminar Pedido ===" + ANSI_RESET);
-                System.out.print("Ingresa el nombre del cliente a eliminar: ");
-                String nombreEliminar = sc.nextLine().toLowerCase();
+                System.out.print("Ingresa el ID del cliente a eliminar: ");
+                String IDaeliminar = sc.nextLine().toLowerCase();
+                int IDeliminado;
+                try {
+                    IDeliminado = Integer.parseInt(IDaeliminar);
+                } catch (NumberFormatException e) {
+                    System.out.println(ANSI_ROJO + "El ID proporcionado no es válido." + ANSI_RESET);
+                    break;
+                }
                 boolean encontrado = false;
 
                 try {
 
                     for (int i = 0; i < pedidos.getSize(); i++) {
                         PriorityNode<Cliente> p = pedidos.getDatos()[i];
-                        if (p != null && p.getDatos().getNombre().toLowerCase().equals(nombreEliminar)) {
+                        if (p != null && p.getDatos().getID() == IDeliminado) {
                             pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1]; 
                             pedidos.setSize(pedidos.getSize() - 1);
                             pedidos.getheapify(i);
@@ -158,21 +164,8 @@ public class Main {
                         }
                     }
 
-
-                    if (arbolpedidos != null) {
-                        Node<Cliente> nuevaRaiz = arbolpedidos.eliminarRaiz(nombreEliminar);
-                        if (nuevaRaiz != null) {
-                            arbolpedidos = nuevaRaiz;
-                            System.out.println(ANSI_AMARILLO + "Pedido eliminado correctamente del arbol" + ANSI_RESET);
-                        } else {
-                            arbolpedidos = null;
-                            System.out.println(ANSI_AMARILLO + "Pedido raiz eliminado, arbol vacio." + ANSI_RESET);
-                        }
-                        encontrado = true;
-                    }
-
                     if (!encontrado) {
-                        System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese nombre." + ANSI_RESET);
+                        System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese ID." + ANSI_RESET);
                     }
 
                 } catch (Exception e) {
@@ -226,7 +219,7 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println(ANSI_AZUL + "\n=== Historial de Pedidos ===" + ANSI_RESET);
+                    System.out.println(ANSI_AZUL + "\n=== Historial de Pedidos Registrados ===" + ANSI_RESET);
                     if (historial.isEmpty()) {
                         System.out.println(ANSI_ROJO + "No hay historial de pedidos." + ANSI_RESET);
                         break;

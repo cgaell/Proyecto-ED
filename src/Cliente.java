@@ -1,15 +1,28 @@
 //objeto para usar colas con prioridad
 
-public class Cliente {
+public class Cliente{
+    private static int cont = 0;
     private int ID;
     private String nombre;
     private String direccion;
     private String telefono;
+    private int prioridad;
 
-    public Cliente(String nombre, String direccion, String telefono) {      
+    public Cliente(int ID, String nombre, String direccion, String telefono, int prioridad) {  
+        this.ID = cont++;    
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.prioridad = prioridad;
+    }
+    
+    
+    public int getPrioridad() {
+        return prioridad;
+    }
+    
+    public static int getID() {
+        return cont;
     }
 
     public String getNombre() {
@@ -37,6 +50,10 @@ public class Cliente {
     }
 
     public String toString() {
-        return "Cliente{" + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
+        return "Cliente{" +  "ID=" + ID + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
+    }
+
+    public int comparacion(Cliente otroCliente){
+        return Integer.compare(this.prioridad, otroCliente.prioridad);
     }
 }
