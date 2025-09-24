@@ -3,7 +3,7 @@ public class PriorityQueue<T> {
     private int size;
 
     public PriorityQueue() { // Tamaño inicial
-        this.datos = new PriorityNode[23]; // Tamaño inicial
+        this.datos = new PriorityNode[99]; // Tamaño inicial
         this.size = 0;
     }
 
@@ -140,5 +140,22 @@ public PriorityNode<T>[] getDatos() {
 }
 public void setSize(int size) {
     this.size = size;
+}
+
+
+
+public T buscarPorID(int id) {
+    for (int i = 0; i < size; i++) { // solo hasta size
+        if (datos[i] != null) {
+            T elemento = datos[i].getDatos();
+            if (elemento instanceof Cliente) {
+                Cliente c = (Cliente) elemento;
+                if (c.getID() == id) {
+                    return elemento; // devuelve el Cliente encontrado
+                }
+            }
+        }
+    }
+    return null; // si no se encontró
 }
 }

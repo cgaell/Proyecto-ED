@@ -315,23 +315,15 @@ public class Main {
                     int IDaBuscar = sc.nextInt();
                     sc.nextLine();
 
-                    boolean encontradoBusqueda = false;
+                    Cliente encontradoBusqueda = (Cliente) pedidos.buscarPorID(IDaBuscar);
 
-                    for(int i=0; i< pedidos.getSize();i++){
-                        PriorityNode<Cliente> p = pedidos.getDatos()[i];
-                        if (p != null){
-                            Cliente c = p.getDatos();
-                            if (Cliente.getID() == IDaBuscar){
-                                System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + c.getNombre()); System.out.println("Dirección: " + c.getDireccion()); System.out.println("Teléfono: " + c.getTelefono());
-                                System.out.println("Prioridad: " + c.getPrioridad());
-                                System.out.println("Fecha: " + c.getFecha().format(formato));
+                    if (encontradoBusqueda!= null){
+                                System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + encontradoBusqueda.getNombre()); System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); System.out.println("Teléfono: " + encontradoBusqueda.getTelefono());
+                                System.out.println("Prioridad: " + encontradoBusqueda.getPrioridad());
+                                System.out.println("Fecha: " + encontradoBusqueda.getFecha().format(formato));
                                 System.out.println("--------------------------------");
-                                encontradoBusqueda = true;
                                 break;
-                            }
-                        }
-                    }
-                    if (!encontradoBusqueda){
+                    } else {
                         System.out.println(ANSI_ROJO + "No se encontro ningun cliente con ese ID." + ANSI_RESET);
                     }
                     break;
