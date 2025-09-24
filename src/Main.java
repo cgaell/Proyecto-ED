@@ -39,12 +39,12 @@ public class Main {
 
 
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
-        pedidos.push(1, new Cliente(1, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(1, new Cliente(2, "Carlos Sanchez", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(1, new Cliente(3, "Rogelio Martinez", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(2, new Cliente(4, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(2, new Cliente(5, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(2, new Cliente(6, "Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(1, new Cliente("Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(1, new Cliente("Carlos Sanchez", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Rogelio Martinez", "Av Gomez Morin 38", "8681718201", 1));
+        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
 
         Stack<Cliente> historial = new Stack<>();
 
@@ -147,9 +147,8 @@ public class Main {
                             System.out.println(ANSI_ROJO + "Error: Debes ingresar 1 o 2." + ANSI_RESET);
                             break;
                         }
-                        int idCliente = Cliente.getID();
                         int prioridad = (urgente == 1) ? 1 : 2;
-                        Cliente cliente = new Cliente(idCliente, nombre, direccion, telefono, prioridad);
+                        Cliente cliente = new Cliente(nombre, direccion, telefono, prioridad);
                         
                         pedidos.push(prioridad, cliente);
 
@@ -184,7 +183,7 @@ public class Main {
                     for (int i = 0; i < pedidos.getSize(); i++) {
                         PriorityNode<Cliente> p = pedidos.getDatos()[i];
                         p.getDatos();
-                        if (p != null && Cliente.getID() == IDeliminado) {
+                        if (p != null && p.getDatos().getID() == IDeliminado) {
                             pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1]; 
                             pedidos.setSize(pedidos.getSize() - 1);
                             pedidos.getheapify(i);
