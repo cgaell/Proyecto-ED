@@ -183,7 +183,8 @@ public class Main {
 
                     for (int i = 0; i < pedidos.getSize(); i++) {
                         PriorityNode<Cliente> p = pedidos.getDatos()[i];
-                        if (p != null && p.getDatos().getID() == IDeliminado) {
+                        p.getDatos();
+                        if (p != null && Cliente.getID() == IDeliminado) {
                             pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1]; 
                             pedidos.setSize(pedidos.getSize() - 1);
                             pedidos.getheapify(i);
@@ -291,12 +292,18 @@ public class Main {
                     }
                     break;
                     case 7:
-                    if (arbolpedidos == null) {
-                        System.out.println(ANSI_ROJO + "NO HAY PEDIDOS QUE MOSTRAR" + ANSI_RESET);
-                    } else {
-                        arbolpedidos.imprimirArbol("");
-                    }
-                    break;
+                        System.out.println(ANSI_AZUL + "\n=== Información de la Empresa ===" + ANSI_RESET);
+
+                        Node<String> arbolEmpresa = new Node<>("Empresa");
+                        Node<String> gael = new Node<>("Gael - Distribuidor");
+                        Node<String> carlos = new Node<>("Carlos - Comprador");
+                        Node<String> mauricio = new Node<>("Mauricio - Vendedor");
+                        arbolEmpresa.agregarHijos(gael);
+                        arbolEmpresa.agregarHijos(carlos);
+                        arbolEmpresa.agregarHijos(mauricio);
+                            System.out.println(ANSI_AMARILLO + "Estructura de la empresa:" + ANSI_RESET);
+                            arbolEmpresa.imprimirArbol("");
+                            break;
 
                     case 8:
                     if (pedidos.getSize() == 0) {
@@ -314,7 +321,7 @@ public class Main {
                         PriorityNode<Cliente> p = pedidos.getDatos()[i];
                         if (p != null){
                             Cliente c = p.getDatos();
-                            if (c.getID() == IDaBuscar){
+                            if (Cliente.getID() == IDaBuscar){
                                 System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + c.getNombre()); System.out.println("Dirección: " + c.getDireccion()); System.out.println("Teléfono: " + c.getTelefono());
                                 System.out.println("Prioridad: " + c.getPrioridad());
                                 System.out.println("Fecha: " + c.getFecha().format(formato));
