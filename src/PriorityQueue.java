@@ -52,11 +52,9 @@ public boolean isEmpty() {
 
             //tenga  mayor prioridad que el hijo
 
-            while (posicion > 0 && miPadre.getPriority() > nodoDeEntrada.getPriority()
+            while (posicion > 0 && datos[posicionPadre].getPriority() > nodoDeEntrada.getPriority()){
 
-                    ){
-
-                datos[posicion] = miPadre;
+                datos[posicion] = datos[posicionPadre];
 
                 datos[posicionPadre] = nodoDeEntrada;
 
@@ -96,17 +94,17 @@ public boolean isEmpty() {
 }
 
     private void heapify(int posicion) {
-    int hijoIzq = 2 * posicion; // Índice del hijo izquierdo
-    int hijoDer = 2 * posicion + 1; // Índice del hijo derecho
+    int hijoIzq = 2 * posicion + 1; // Índice del hijo izquierdo
+    int hijoDer = 2 * posicion + 2; // Índice del hijo derecho
     int mayor = posicion;
 
     // Verificamos si el hijo izquierdo existe y tiene mayor prioridad
-    if (hijoIzq <= size && datos[hijoIzq].getPriority() > datos[mayor].getPriority()) {
+    if (hijoIzq < size && datos[hijoIzq].getPriority() > datos[mayor].getPriority()) {
         mayor = hijoIzq;
     }
 
     // Verificamos si el hijo derecho existe y tiene mayor prioridad
-    if (hijoDer <= size && datos[hijoDer].getPriority() > datos[mayor].getPriority()) {
+    if (hijoDer < size && datos[hijoDer].getPriority() > datos[mayor].getPriority()) {
         mayor = hijoDer;
     }
 
@@ -115,6 +113,7 @@ public boolean isEmpty() {
         PriorityNode<T> temp = datos[posicion];
         datos[posicion] = datos[mayor];
         datos[mayor] = temp;
+        
 
         // Recursión para asegurar que la estructura del heap se mantenga
         heapify(mayor);

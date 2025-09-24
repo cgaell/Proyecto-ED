@@ -1,5 +1,5 @@
 //objeto para usar colas con prioridad
-
+import java.time.*;
 public class Cliente{
     private static int cont = 0;
     private int ID;
@@ -7,6 +7,7 @@ public class Cliente{
     private String direccion;
     private String telefono;
     private int prioridad;
+    private LocalDateTime fecha;
 
     public Cliente(int ID, String nombre, String direccion, String telefono, int prioridad) {  
         this.ID = cont++;    
@@ -14,6 +15,7 @@ public class Cliente{
         this.direccion = direccion;
         this.telefono = telefono;
         this.prioridad = prioridad;
+        this.fecha = LocalDateTime.now();
     }
     
     
@@ -47,6 +49,14 @@ public class Cliente{
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public LocalDateTime getFecha(){
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha){
+        this.fecha = fecha;
     }
 
     public String toString() {
