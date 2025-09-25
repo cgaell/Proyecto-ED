@@ -1,16 +1,17 @@
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-    // Colores ANSI para consola
     static Node<Cliente> arbolpedidos = null;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ROJO = "\u001B[31m";
     public static final String ANSI_AMARILLO = "\u001B[33m";
     public static final String ANSI_AZUL = "\u001B[34m";
     public static final String ANSI_MORADO = "\u001B[35m";
-    public static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    public static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MMMM/yyyy HH:mm:ss");
     /**
      * Logica principal del codigo
      * @param args todo lo que se va a implementar dentro (default)
@@ -46,7 +47,7 @@ public class Main {
         pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
         pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
 
-        Stack<Cliente> historial = new Stack<>();
+        Queue<Cliente> pedidosProcesados = new Queue<>();
 
         boolean salir = false;
         while (!salir) {
@@ -72,12 +73,6 @@ public class Main {
                 case 1:
                     boolean salirFloreria = false;
                     while (!salirFloreria) {
-                        
-                    
-                
-            
-                
-            
 
             System.out.println("\n" + ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.println(ANSI_AZUL + "                  FLORERIA GMC      " + ANSI_RESET);
@@ -86,11 +81,11 @@ public class Main {
             System.out.println("| 2. Eliminar pedido por ID                     |");
             System.out.println("| 3. Consultar catálogo de flores               |");
             System.out.println("| 4. Mostrar todos los pedidos                  |");
-            System.out.println("| 5. Ver historial de pedidos                   |");
-            System.out.println("| 6. Procesar pedido                            |");
-            System.out.println("| 7. Ver Informacion de la empresa              |");
-            System.out.println("| 8. Buscar pedido por ID                       |");
-            System.out.println("| 0. Volver al menu principal                                      |");
+            System.out.println("| 5. Ver Informacion de la empresa              |");
+            System.out.println("| 6. Buscar pedido por ID                       |");
+            System.out.println("| 7. Procesar pedido por ID                     |");
+            System.out.println("| 8. Ver historial de pedidos procesados        |");
+            System.out.println("| 0. Volver al menu principal                   |");
 
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.print("Selecciona una opción: ");
@@ -117,7 +112,6 @@ public class Main {
                         String telefono = sc.nextLine();
 
                         System.out.println("Selecciona el tipo de ramo:");
-
 
                         int index = 1;
                         Node<Flores<String>> nodoActual;
@@ -152,8 +146,6 @@ public class Main {
                         
                         pedidos.push(prioridad, cliente);
 
-
-                        historial.push(cliente);
                         System.out.println(ANSI_AMARILLO + "Pedido agregado con éxito." + ANSI_RESET);
 
                     } catch (InputMismatchException e) {
@@ -231,101 +223,157 @@ public class Main {
                         System.out.println(ANSI_ROJO + "No hay pedidos." + ANSI_RESET);
                         break;
                     }
-                    System.out.println("+----+-----------------+-----------------+-------------+-----------+");
-                    System.out.printf("| %-2s | %-15s | %-15s | %-11s | %-9s | %-19s |\n",
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
+                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-21s |\n",
                             "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha");
-                    System.out.println("+----+-----------------+-----------------+-------------+-----------+");
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
                    
-                    
+                    List<Cliente> pedidosP1 = new ArrayList<>();
+                    List<Cliente> pedidosP2 = new ArrayList<>();
 
                     for (int i = 0; i < pedidos.getSize(); i++) {
                         PriorityNode<Cliente> p = pedidos.getDatos()[i];
                         if (p != null) {
                             Cliente c = p.getDatos();
-                            System.out.printf("| %-2s | %-15s | %-15s | %-11s | %-9s | %-19s |\n",
-                                    (i + 1), c.getNombre(), c.getDireccion(),
-                                    c.getTelefono(), p.getPriority(), c.getFecha().format(formato));
+                            if (p.getPriority() == 1) {
+                                pedidosP1.add(c);
+                            } else if (p.getPriority() == 2) {
+                                pedidosP2.add(c);
+                            }
                         }
                     }
-                    System.out.println("+----+-----------------+-----------------+-------------+-----------+");
+
+                    for (Cliente c : pedidosP1) {
+                        System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
+                                c.getID(), c.getNombre(), c.getDireccion(),
+                                c.getTelefono(), 1, c.getFecha().format(formato));
+                    }
+
+                    for (Cliente c : pedidosP2) {
+                        System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
+                                c.getID(), c.getNombre(), c.getDireccion(),
+                                c.getTelefono(), 2, c.getFecha().format(formato));
+                    }
+
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
                     break;
 
                 case 5:
-                    System.out.println(ANSI_AZUL + "\n=== Historial de Pedidos Registrados ===" + ANSI_RESET);
-                    if (historial.isEmpty()) {
-                        System.out.println(ANSI_ROJO + "No hay historial de pedidos." + ANSI_RESET);
+                    System.out.println(ANSI_AZUL + "\n=== Información de la Empresa ===" + ANSI_RESET);
+
+                    Node<String> arbolEmpresa = new Node<>("Empresa");
+                    Node<String> gael = new Node<>("Gael - Distribuidor");
+                    Node<String> carlos = new Node<>("Carlos - Comprador");
+                    Node<String> mauricio = new Node<>("Mauricio - Vendedor");
+                    arbolEmpresa.agregarHijos(gael);
+                    arbolEmpresa.agregarHijos(carlos);
+                    arbolEmpresa.agregarHijos(mauricio);
+                        System.out.println(ANSI_AMARILLO + "Estructura de la empresa:" + ANSI_RESET);
+                        arbolEmpresa.imprimirArbol("");
                         break;
-                    }
-                    System.out.println("+----+-----------------+-----------------+-------------+");
-                    System.out.printf("| %-2s | %-15s | %-15s | %-11s | %-19s |\n",
-                            "ID", "Nombre", "Dirección", "Teléfono", "Fecha");
-                    System.out.println("+----+-----------------+-----------------+-------------+");
-                    Node<Cliente> nodoHist = historial.getDatos().getCabeza();
-                    int idHist = 1;
-                    while (nodoHist != null) {
-                        Cliente c = nodoHist.getDatos();
-                        System.out.printf("| %-2s | %-15s | %-15s | %-11s | %-19s |\n",
-                                idHist, c.getNombre(), c.getDireccion(), c.getTelefono(), c.getFecha().format(formato));
-                        nodoHist = nodoHist.getNext();
-                        idHist++;
-                    }
-                    System.out.println("+----+-----------------+-----------------+-------------+");
-                    break;
 
                 case 6:
-                System.out.println(ANSI_AZUL + "\n=== Procesar Pedido ===" + ANSI_RESET);
+                if (pedidos.getSize() == 0) {
+                    System.out.println(ANSI_ROJO + "No hay pedidos registrados." + ANSI_RESET);
+                    break;
+                }
+
+                System.out.print("Ingresa el ID del cliente a buscar: ");
+                int IDaBuscar = sc.nextInt();
+                sc.nextLine();
+
+                Cliente encontradoBusqueda = (Cliente) pedidos.buscarPorID(IDaBuscar);
+
+                if (encontradoBusqueda!= null){
+                            System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + encontradoBusqueda.getNombre()); System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); System.out.println("Teléfono: " + encontradoBusqueda.getTelefono());
+                            System.out.println("Prioridad: " + encontradoBusqueda.getPrioridad());
+                            System.out.println("Fecha: " + encontradoBusqueda.getFecha().format(formato));
+                            System.out.println("--------------------------------");
+                            break;
+                } else {
+                    System.out.println(ANSI_ROJO + "No se encontro ningun cliente con ese ID." + ANSI_RESET);
+                }
+                break;
+                case 7:
+                    System.out.println(ANSI_AZUL + "\n=== Procesar Pedido ===" + ANSI_RESET);
                     if (pedidos.getSize() == 0) {
                         System.out.println(ANSI_ROJO + "No hay pedidos para procesar." + ANSI_RESET);
                         break;
                     }
                     try {
-                        PriorityNode<Cliente> pedidoProcesado = pedidos.pop();
-                        Cliente c = pedidoProcesado.getDatos();
-                        System.out.println(ANSI_AMARILLO + "Pedido procesado:" + ANSI_RESET);
-                        System.out.println("Nombre: " + c.getNombre());
-                        System.out.println("Dirección: " + c.getDireccion());
-                        System.out.println("Teléfono: " + c.getTelefono());
-                        System.out.println("Prioridad: " + pedidoProcesado.getPriority());
+                        System.out.print("Ingresa el ID del pedido a procesar: ");
+                        int idProcesar = sc.nextInt();
+                        sc.nextLine();
+
+                        boolean pedidoEncontrado = false;
+                        for (int i = 0; i < pedidos.getSize(); i++) {
+                            PriorityNode<Cliente> p = pedidos.getDatos()[i];
+                            if (p != null && p.getDatos().getID() == idProcesar) {
+                                Cliente clienteProcesado = p.getDatos();
+
+                                // Mostrar los detalles del pedido procesado
+                                System.out.println(ANSI_AMARILLO + "\nPedido procesado:" + ANSI_RESET);
+                                System.out.println("ID: " + clienteProcesado.getID());
+                                System.out.println("Nombre: " + clienteProcesado.getNombre());
+                                System.out.println("Dirección: " + clienteProcesado.getDireccion());
+                                System.out.println("Teléfono: " + clienteProcesado.getTelefono());
+                                System.out.println("Prioridad: " + p.getPriority());
+                                System.out.println("Fecha: " + clienteProcesado.getFecha().format(formato));
+                                System.out.println("----------------------------------------");
+
+                                // Eliminar el pedido de la cola de prioridad (pedidos)
+                                pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1];
+                                pedidos.setSize(pedidos.getSize() - 1);
+                                pedidos.getheapify(i);
+                                
+                                pedidosProcesados.push(clienteProcesado);
+
+                                pedidoEncontrado = true;
+                                System.out.println(ANSI_AMARILLO + "Pedido movido al historial de procesados." + ANSI_RESET);
+                                break;
+                            }
+                        }
+
+                        if (!pedidoEncontrado) {
+                            System.out.println(ANSI_ROJO + "No se encontró ningún pedido con ese ID." + ANSI_RESET);
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println(ANSI_ROJO + "Error: Entrada inválida. Ingresa un número de ID válido." + ANSI_RESET);
+                        sc.nextLine();
                     } catch (Exception e) {
                         System.out.println(ANSI_ROJO + "Error al procesar el pedido: " + e.getMessage() + ANSI_RESET);
                     }
                     break;
-                    case 7:
-                        System.out.println(ANSI_AZUL + "\n=== Información de la Empresa ===" + ANSI_RESET);
-
-                        Node<String> arbolEmpresa = new Node<>("Empresa");
-                        Node<String> gael = new Node<>("Gael - Distribuidor");
-                        Node<String> carlos = new Node<>("Carlos - Comprador");
-                        Node<String> mauricio = new Node<>("Mauricio - Vendedor");
-                        arbolEmpresa.agregarHijos(gael);
-                        arbolEmpresa.agregarHijos(carlos);
-                        arbolEmpresa.agregarHijos(mauricio);
-                            System.out.println(ANSI_AMARILLO + "Estructura de la empresa:" + ANSI_RESET);
-                            arbolEmpresa.imprimirArbol("");
-                            break;
-
-                    case 8:
-                    if (pedidos.getSize() == 0) {
-                        System.out.println(ANSI_ROJO + "No hay pedidos registrados." + ANSI_RESET);
+                
+                case 8:
+                    System.out.println(ANSI_AZUL + "\n=== Historial de Pedidos Procesados ===" + ANSI_RESET);
+                    if (pedidosProcesados.isEmpty()) {
+                        System.out.println(ANSI_ROJO + "No hay pedidos procesados." + ANSI_RESET);
                         break;
                     }
-
-                    System.out.print("Ingresa el ID del cliente a buscar: ");
-                    int IDaBuscar = sc.nextInt();
-                    sc.nextLine();
-
-                    Cliente encontradoBusqueda = (Cliente) pedidos.buscarPorID(IDaBuscar);
-
-                    if (encontradoBusqueda!= null){
-                                System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + encontradoBusqueda.getNombre()); System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); System.out.println("Teléfono: " + encontradoBusqueda.getTelefono());
-                                System.out.println("Prioridad: " + encontradoBusqueda.getPrioridad());
-                                System.out.println("Fecha: " + encontradoBusqueda.getFecha().format(formato));
-                                System.out.println("--------------------------------");
-                                break;
-                    } else {
-                        System.out.println(ANSI_ROJO + "No se encontro ningun cliente con ese ID." + ANSI_RESET);
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
+                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-21s |\n",
+                            "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha");
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
+                    
+                    try {
+                        Queue<Cliente> tempQueue = new Queue<>();
+                        while (!pedidosProcesados.isEmpty()) {
+                            Cliente c = pedidosProcesados.pop();
+                            System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
+                                    c.getID(), c.getNombre(), c.getDireccion(),
+                                    c.getTelefono(), c.getPrioridad(), c.getFecha().format(formato));
+                            tempQueue.push(c);
+                        }
+                        pedidosProcesados = tempQueue;
+                    } catch (Exception e) {
+                        System.out.println(ANSI_ROJO + "Error al mostrar historial de pedidos: " + e.getMessage() + ANSI_RESET);
                     }
+                    
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
                     break;
+
 
                 case 0:
                     salirFloreria = true;
