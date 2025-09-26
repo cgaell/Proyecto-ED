@@ -40,12 +40,68 @@ public class Main {
 
 
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
-        pedidos.push(1, new Cliente("Gael Castro", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(1, new Cliente("Carlos Sanchez", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Rogelio Martinez", "Av Gomez Morin 38", "8681718201", 1));
-        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Gael Castro", "Av Gomez Morin 38", "8681718201", 2));
+        pedidos.push(1, new Cliente("Cliente1", "dir1", "8681718201", 1));
+        pedidos.push(1, new Cliente("Cliente2", "dir2", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente3", "dir3", "8681718201", 1));
+        pedidos.push(2, new Cliente( "Cliente4", "dir4", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente5", "dir5", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente6", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente7", "di6", "8681718201", 2));
+        pedidos.push(1, new Cliente( "Cliente8", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente9", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente10", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente11", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente12", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente13", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente14", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente15", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente16", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente17", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente18", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente19", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente20", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente21", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente22", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente23", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente24", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente25", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente26", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente27", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente28", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente29", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente30", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente31", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente32", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente33", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente34", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente35", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente36", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente37", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente38", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente39", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente40", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente41", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente42", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente43", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente44", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente45", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente46", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente47", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente48", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente49", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente50", "dir3", "8681718201", 1));
+        pedidos.push(1, new Cliente( "Cliente51", "dir3", "8681718201", 1));
+        pedidos.push(2, new Cliente( "Cliente52", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente53", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente54", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente55", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente56", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente57", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente58", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente59", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente60", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente61", "di6", "8681718201", 2));
+        pedidos.push(2, new Cliente( "Cliente62", "di6", "8681718201", 2));
 
         Queue<Cliente> pedidosProcesados = new Queue<>();
 
@@ -56,7 +112,7 @@ public class Main {
             System.out.println(ANSI_MORADO + "==================================================" + ANSI_RESET);
             System.out.println("| 1. Gestionar pedidos                         |");
             System.out.println("| 2. Gestionar departamentos                   |");
-            System.out.println("| 0. Salir                  |");
+            System.out.println("| 0. Salir                                     |");
             System.out.println(ANSI_MORADO + "==================================================" + ANSI_RESET);
             System.out.print("Selecciona una opcion: ");
             int opcionMenuPrincipal = 0;
@@ -113,19 +169,28 @@ public class Main {
 
                         System.out.println("Selecciona el tipo de ramo:");
 
+                        System.out.println(ANSI_AZUL + "\n=== Catálogo de Flores ===" + ANSI_RESET);
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                        System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
+                                "ID", "Nombre", "Cantidad", "Tipo", "Precio");
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+
                         int index = 1;
                         Node<Flores<String>> nodoActual;
                         for (int i = 0; i < catalogo.getTabla().length; i++) {
                             nodoActual = catalogo.getTabla()[i].getCabeza();
                             while (nodoActual != null) {
                                 Flores<String> f = nodoActual.getDatos();
-                                System.out.println(index + ". " + f.getNombre() + " - $" + f.getPrecio());
+                                System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
+                                        index, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
                                 nodoActual = nodoActual.getNext();
                                 index++;
                             }
                         }
 
-                        System.out.print("Número de ramo: ");
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+
+                        System.out.print("Selecciona el tipo de ramo (1-16): ");
                         int ramoSeleccionado = sc.nextInt();
                         sc.nextLine();
 
