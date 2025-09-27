@@ -46,7 +46,7 @@ public class Main {
 
             int indiceRamo = i % ramos.length;
             String ramoElegido = ramos[indiceRamo];
-            double precioPedido = precios[indiceRamo] + random.nextDouble() * 50; // Precio base con ligera variación
+            double precioPedido = precios[indiceRamo] + random.nextDouble() * 50; 
             
             Cliente nuevoCliente = new Cliente(nombre, direccion, telefono, prioridad, precioPedido, ramoElegido);
             pedidos.push(prioridad, nuevoCliente);
