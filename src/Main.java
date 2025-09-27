@@ -3,8 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random; 
 
 public class Main {
+    // Colores ANSI para consola
     static Node<Cliente> arbolpedidos = null;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ROJO = "\u001B[31m";
@@ -12,13 +14,52 @@ public class Main {
     public static final String ANSI_AZUL = "\u001B[34m";
     public static final String ANSI_MORADO = "\u001B[35m";
     public static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MMMM/yyyy HH:mm:ss");
+
+    /**
+     * funcion  para generar y agregar 100 clientes, cada uno con 
+     * información unica, por ejemplo con nombre, dirección, teléfono y prioridad propia
+     * @param pedidos La PriorityQueue a la que se añadirán los clientes.
+     */
+    private static void generarYAgregarClientesPersonalizados(PriorityQueue<Cliente> pedidos) {
+        Random random = new Random();
+        
+        String[] nombres = {"Ana", "Luis", "Sofía", "Javier", "Elena", "Ricardo", "Valeria", "Andrés", "Camila", "Diego", 
+                            "Gael", "Hilda", "Omar", "Paula", "Rubén", "Ximena", "Yago", "Diana", "Iván", "Nora"};
+        String[] apellidos = {"García", "Pérez", "López", "Ramírez", "Torres", "Castro", "Soto", "Gómez", "Díaz", "Mendoza",
+                              "Vargas", "Mora", "Reyes", "Sánchez", "Muñoz", "Herrera", "Cruz", "Paz", "Flores", "Solís"};
+        String[] calles = {"Calle de la Flor", "Avenida Tulipán", "Paseo Rosaleda", "Boulevard Girasol", "Calle Clavel", 
+                           "Av. Orquídea", "Blvd. Gardenia", "Paseo de las Lilas", "Calle Crisantemo", "Av. Margarita"};
+        
+        String[] ramos = {"Ramo de Rosas", "Ramo de Girasoles", "Ramo de Tulipanes", "Ramo Mixto", "Gerberas", "Lirios", "Claveles", "Gladiolas"};
+        double[] precios = {350.0, 250.0, 300.0, 400.0, 350.0, 459.0, 390.0, 420.0};
+        
+        for (int i = 1; i <= 100; i++) {
+            
+            String nombre = nombres[i % nombres.length] + " " + apellidos[(i + 5) % apellidos.length];
+            
+            String calleElegida = calles[i % calles.length];
+            String direccion = calleElegida + " #" + (100 + i * 5) + " Col. Jardín " + (i % 10 + 1);
+            
+            String telefono = "868" + String.format("%07d", 1000000 + i * 11);
+            
+            int prioridad = random.nextInt(2) + 1; 
+
+            int indiceRamo = i % ramos.length;
+            String ramoElegido = ramos[indiceRamo];
+            double precioPedido = precios[indiceRamo] + random.nextDouble() * 50; // Precio base con ligera variación
+            
+            Cliente nuevoCliente = new Cliente(nombre, direccion, telefono, prioridad, precioPedido, ramoElegido);
+            pedidos.push(prioridad, nuevoCliente);
+        }
+    }
+
     /**
      * Logica principal del codigo
      * @param args todo lo que se va a implementar dentro (default)
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        double gananciasTotales = 0.0;
 
         HashTable<Flores<String>> catalogo = new HashTable<>(23);
         catalogo.insertar(new Flores<>("Ramo de Rosas", 10, "Rosas", 350.0));
@@ -38,71 +79,10 @@ public class Main {
         catalogo.insertar(new Flores<>("Lilas", 25, "Lilas", 425.0));
         catalogo.insertar(new Flores<>("Peonias", 10, "Peoinas", 900.));
 
-
         PriorityQueue<Cliente> pedidos = new PriorityQueue<>();
-        pedidos.push(1, new Cliente("Cliente1", "dir1", "8681718201", 1));
-        pedidos.push(1, new Cliente("Cliente2", "dir2", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente3", "dir3", "8681718201", 1));
-        pedidos.push(2, new Cliente( "Cliente4", "dir4", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente5", "dir5", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente6", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente7", "di6", "8681718201", 2));
-        pedidos.push(1, new Cliente( "Cliente8", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente9", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente10", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente11", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente12", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente13", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente14", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente15", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente16", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente17", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente18", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente19", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente20", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente21", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente22", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente23", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente24", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente25", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente26", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente27", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente28", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente29", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente30", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente31", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente32", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente33", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente34", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente35", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente36", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente37", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente38", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente39", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente40", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente41", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente42", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente43", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente44", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente45", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente46", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente47", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente48", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente49", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente50", "dir3", "8681718201", 1));
-        pedidos.push(1, new Cliente( "Cliente51", "dir3", "8681718201", 1));
-        pedidos.push(2, new Cliente( "Cliente52", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente53", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente54", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente55", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente56", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente57", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente58", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente59", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente60", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente61", "di6", "8681718201", 2));
-        pedidos.push(2, new Cliente( "Cliente62", "di6", "8681718201", 2));
-
+        
+        generarYAgregarClientesPersonalizados(pedidos);
+        
         Queue<Cliente> pedidosProcesados = new Queue<>();
 
         boolean salir = false;
@@ -129,7 +109,7 @@ public class Main {
                 case 1:
                     boolean salirFloreria = false;
                     while (!salirFloreria) {
-
+                
             System.out.println("\n" + ANSI_AZUL + "==================================================" + ANSI_RESET);
             System.out.println(ANSI_AZUL + "                  FLORERIA GMC      " + ANSI_RESET);
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -141,6 +121,7 @@ public class Main {
             System.out.println("| 6. Buscar pedido por ID                       |");
             System.out.println("| 7. Procesar pedido por ID                     |");
             System.out.println("| 8. Ver historial de pedidos procesados        |");
+            System.out.println("| 9. Ver ganancias totales                      |");
             System.out.println("| 0. Volver al menu principal                   |");
 
             System.out.println(ANSI_AZUL + "==================================================" + ANSI_RESET);
@@ -150,7 +131,7 @@ public class Main {
             try {
                 opcion = sc.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 8." + ANSI_RESET);
+                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 9." + ANSI_RESET);
                 sc.nextLine();    
                 continue;
             }
@@ -169,35 +150,35 @@ public class Main {
 
                         System.out.println("Selecciona el tipo de ramo:");
 
-                        System.out.println(ANSI_AZUL + "\n=== Catálogo de Flores ===" + ANSI_RESET);
-                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
-                        System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
-                                "ID", "Nombre", "Cantidad", "Tipo", "Precio");
-                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
 
                         int index = 1;
-                        Node<Flores<String>> nodoActual;
+                        Node<Flores<String>> nodoActual = null;
+                        
+                        List<Flores<String>> floresEnCatalogo = new ArrayList<>();
                         for (int i = 0; i < catalogo.getTabla().length; i++) {
                             nodoActual = catalogo.getTabla()[i].getCabeza();
                             while (nodoActual != null) {
                                 Flores<String> f = nodoActual.getDatos();
-                                System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
-                                        index, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
+                                System.out.println(index + ". " + f.getNombre() + " - $" + f.getPrecio());
+                                floresEnCatalogo.add(f);
                                 nodoActual = nodoActual.getNext();
                                 index++;
                             }
                         }
 
-                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
-
-                        System.out.print("Selecciona el tipo de ramo (1-16): ");
-                        int ramoSeleccionado = sc.nextInt();
+                        System.out.print("Número de ramo: ");
+                        int indiceRamo = sc.nextInt();
                         sc.nextLine();
 
-                        if (ramoSeleccionado < 1 || ramoSeleccionado >= index) {
+                        if (indiceRamo < 1 || indiceRamo > floresEnCatalogo.size()) {
                             System.out.println(ANSI_ROJO + "Error: Número de ramo inválido." + ANSI_RESET);
                             break;
                         }
+
+                        Flores<String> florSeleccionada = floresEnCatalogo.get(indiceRamo - 1);
+                        double precioPedido = florSeleccionada.getPrecio();
+                        String nombreRamo = florSeleccionada.getNombre();
+
 
                         System.out.print("¿Es urgente? (1: Sí, 2: No): ");
                         int urgente = sc.nextInt();
@@ -207,11 +188,15 @@ public class Main {
                             break;
                         }
                         int prioridad = (urgente == 1) ? 1 : 2;
-                        Cliente cliente = new Cliente(nombre, direccion, telefono, prioridad);
+                        
+                        
+                        String ramo = nombreRamo;
+                        
+                        Cliente cliente = new Cliente(nombre, direccion, telefono, prioridad, precioPedido,ramo);
                         
                         pedidos.push(prioridad, cliente);
 
-                        System.out.println(ANSI_AMARILLO + "Pedido agregado con éxito." + ANSI_RESET);
+                        System.out.println(ANSI_AMARILLO + "Pedido agregado con éxito. ID: " + cliente.getID() + " | Ramo: " + nombreRamo + ANSI_RESET);
 
                     } catch (InputMismatchException e) {
                         System.out.println(ANSI_ROJO + "Error: Entrada inválida, asegúrate de ingresar números donde corresponda." + ANSI_RESET);
@@ -282,46 +267,65 @@ public class Main {
                         System.out.println("+----+-----------------------------+-----------+----------------+---------+");
                         break;
 
-                case 4:
-                    System.out.println(ANSI_AZUL + "\n=== Pedidos Actuales ===" + ANSI_RESET);
-                    if (pedidos.getSize() == 0) {
-                        System.out.println(ANSI_ROJO + "No hay pedidos." + ANSI_RESET);
-                        break;
-                    }
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
-                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-21s |\n",
-                            "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha");
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
-                   
-                    List<Cliente> pedidosP1 = new ArrayList<>();
-                    List<Cliente> pedidosP2 = new ArrayList<>();
-
-                    for (int i = 0; i < pedidos.getSize(); i++) {
-                        PriorityNode<Cliente> p = pedidos.getDatos()[i];
-                        if (p != null) {
-                            Cliente c = p.getDatos();
-                            if (p.getPriority() == 1) {
-                                pedidosP1.add(c);
-                            } else if (p.getPriority() == 2) {
-                                pedidosP2.add(c);
+                        case 4:
+                        System.out.println(ANSI_AZUL + "\n=== Pedidos Actuales ===" + ANSI_RESET);
+                        if (pedidos.getSize() == 0) {
+                            System.out.println(ANSI_ROJO + "No hay pedidos." + ANSI_RESET);
+                            break;
+                        }
+                        
+                        String separador4 = "+----+--------------------------------+--------------------------------+-------------+-----------+-----------------------+";
+                        System.out.println(separador4);
+                        System.out.printf("| %-2s | %-30s | %-30s | %-11s | %-9s | %-21s |\n",
+                                "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha");
+                        System.out.println(separador4);
+                       
+                        List<Cliente> pedidosP1 = new ArrayList<>();
+                        List<Cliente> pedidosP2 = new ArrayList<>();
+    
+                        // Separa los pedidos por prioridad
+                        for (int i = 0; i < pedidos.getSize(); i++) {
+                            PriorityNode<Cliente> p = pedidos.getDatos()[i];
+                            if (p != null) {
+                                Cliente c = p.getDatos();
+                                if (p.getPriority() == 1) {
+                                    pedidosP1.add(c);
+                                } else if (p.getPriority() == 2) {
+                                    pedidosP2.add(c);
+                                }
                             }
                         }
-                    }
-
-                    for (Cliente c : pedidosP1) {
-                        System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
-                                c.getID(), c.getNombre(), c.getDireccion(),
-                                c.getTelefono(), 1, c.getFecha().format(formato));
-                    }
-
-                    for (Cliente c : pedidosP2) {
-                        System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
-                                c.getID(), c.getNombre(), c.getDireccion(),
-                                c.getTelefono(), 2, c.getFecha().format(formato));
-                    }
-
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
-                    break;
+                        
+                        System.out.println(ANSI_ROJO + "--- PRIORIDAD 1 (URGENTE) ---" + ANSI_RESET);
+                        for (Cliente c : pedidosP1) {
+                            String nombreCorto = c.getNombre().substring(0, Math.min(c.getNombre().length(), 30));
+                            String direccionCorta = c.getDireccion().substring(0, Math.min(c.getDireccion().length(), 30));
+                            
+                            System.out.printf("| %-3d | %-30s | %-30s | %-11s | %-9d | %-21s |\n",
+                                    c.getID(), 
+                                    nombreCorto, 
+                                    direccionCorta,
+                                    c.getTelefono(), 
+                                    c.getPrioridad(), 
+                                    c.getFecha().format(formato));
+                        }
+    
+                        System.out.println(ANSI_AZUL + "--- PRIORIDAD 2 (NO URGENTE) ---" + ANSI_RESET);
+                        for (Cliente c : pedidosP2) {
+                            String nombreCorto = c.getNombre().substring(0, Math.min(c.getNombre().length(), 30));
+                            String direccionCorta = c.getDireccion().substring(0, Math.min(c.getDireccion().length(), 30));
+                            
+                            System.out.printf("| %-3d | %-30s | %-30s | %-11s | %-9d | %-21s |\n",
+                                    c.getID(), 
+                                    nombreCorto, 
+                                    direccionCorta,
+                                    c.getTelefono(), 
+                                    c.getPrioridad(), 
+                                    c.getFecha().format(formato));
+                        }
+    
+                        System.out.println(separador4);
+                        break;
 
                 case 5:
                     System.out.println(ANSI_AZUL + "\n=== Información de la Empresa ===" + ANSI_RESET);
@@ -329,7 +333,7 @@ public class Main {
                     Node<String> arbolEmpresa = new Node<>("Empresa");
                     Node<String> gael = new Node<>("Gael - Distribuidor");
                     Node<String> carlos = new Node<>("Carlos - Comprador");
-                    Node<String> mauricio = new Node<>("Mauricio - Vendedor");
+                    Node <String> mauricio = new Node<>("Mauricio -Vendedor");
                     arbolEmpresa.agregarHijos(gael);
                     arbolEmpresa.agregarHijos(carlos);
                     arbolEmpresa.agregarHijos(mauricio);
@@ -350,9 +354,15 @@ public class Main {
                 Cliente encontradoBusqueda = (Cliente) pedidos.buscarPorID(IDaBuscar);
 
                 if (encontradoBusqueda!= null){
-                            System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); System.out.println("Nombre: " + encontradoBusqueda.getNombre()); System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); System.out.println("Teléfono: " + encontradoBusqueda.getTelefono());
+                            System.out.println(ANSI_AMARILLO + "Cliente encontrado: " + ANSI_RESET); 
+                            System.out.println("ID: " + encontradoBusqueda.getID()); 
+                            System.out.println("Nombre: " + encontradoBusqueda.getNombre()); 
+                            System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); 
+                            System.out.println("Teléfono: " + encontradoBusqueda.getTelefono()); 
+                            System.out.println("Ramo elejido: " + encontradoBusqueda.getRamo()); 
                             System.out.println("Prioridad: " + encontradoBusqueda.getPrioridad());
                             System.out.println("Fecha: " + encontradoBusqueda.getFecha().format(formato));
+                            System.out.println("Precio: $" + encontradoBusqueda.getPrecioDePedido());
                             System.out.println("--------------------------------");
                             break;
                 } else {
@@ -376,17 +386,19 @@ public class Main {
                             if (p != null && p.getDatos().getID() == idProcesar) {
                                 Cliente clienteProcesado = p.getDatos();
 
-                                // Mostrar los detalles del pedido procesado
                                 System.out.println(ANSI_AMARILLO + "\nPedido procesado:" + ANSI_RESET);
                                 System.out.println("ID: " + clienteProcesado.getID());
                                 System.out.println("Nombre: " + clienteProcesado.getNombre());
                                 System.out.println("Dirección: " + clienteProcesado.getDireccion());
                                 System.out.println("Teléfono: " + clienteProcesado.getTelefono());
+                                System.out.println("Ramo elejido: " + clienteProcesado.getRamo()); 
                                 System.out.println("Prioridad: " + p.getPriority());
                                 System.out.println("Fecha: " + clienteProcesado.getFecha().format(formato));
+                                System.out.println("Precio: $" + clienteProcesado.getPrecioDePedido());
                                 System.out.println("----------------------------------------");
+                                
+                                gananciasTotales += clienteProcesado.getPrecioDePedido();
 
-                                // Eliminar el pedido de la cola de prioridad (pedidos)
                                 pedidos.getDatos()[i] = pedidos.getDatos()[pedidos.getSize() - 1];
                                 pedidos.setSize(pedidos.getSize() - 1);
                                 pedidos.getheapify(i);
@@ -417,18 +429,18 @@ public class Main {
                         System.out.println(ANSI_ROJO + "No hay pedidos procesados." + ANSI_RESET);
                         break;
                     }
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
-                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-21s |\n",
-                            "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha");
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
+                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-30s | %-27s |\n",
+                            "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha", "Ramo");
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
                     
                     try {
                         Queue<Cliente> tempQueue = new Queue<>();
                         while (!pedidosProcesados.isEmpty()) {
                             Cliente c = pedidosProcesados.pop();
-                            System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s |\n",
+                            System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s | %-27s |\n",
                                     c.getID(), c.getNombre(), c.getDireccion(),
-                                    c.getTelefono(), c.getPrioridad(), c.getFecha().format(formato));
+                                    c.getTelefono(), c.getPrioridad(), c.getFecha().format(formato), c.getRamo());
                             tempQueue.push(c);
                         }
                         pedidosProcesados = tempQueue;
@@ -436,9 +448,13 @@ public class Main {
                         System.out.println(ANSI_ROJO + "Error al mostrar historial de pedidos: " + e.getMessage() + ANSI_RESET);
                     }
                     
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+");
+                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
                     break;
-
+                    
+                case 9:
+                    System.out.println(ANSI_AZUL + "\n=== Ganancias Totales ===" + ANSI_RESET);
+                    System.out.printf(ANSI_AMARILLO + "Total de ganancias hasta el momento: $%.2f\n" + ANSI_RESET, gananciasTotales);
+                    break;
 
                 case 0:
                     salirFloreria = true;
@@ -463,5 +479,5 @@ public class Main {
         System.out.println(ANSI_ROJO + "Opcion no valida." + ANSI_RESET);
     }
 }
-}
+    }
 }
