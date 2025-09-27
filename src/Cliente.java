@@ -1,4 +1,3 @@
-//objeto para usar colas con prioridad
 import java.time.*;
 public class Cliente{
     private static int cont = 1;
@@ -8,16 +7,19 @@ public class Cliente{
     private String telefono;
     private int prioridad;
     private LocalDateTime fecha;
-
-    public Cliente(String nombre, String direccion, String telefono, int prioridad) {  
-        this.ID = cont++;    
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.prioridad = prioridad;
-        this.fecha = LocalDateTime.now();
-    }
+    private double precioDePedido;
+    private String ramo;
     
+        public Cliente(String nombre, String direccion, String telefono, int prioridad, double precioDePedido, String ramo) {  
+            this.ID = cont++;    
+            this.nombre = nombre;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.prioridad = prioridad;
+            this.fecha = LocalDateTime.now();
+            this.precioDePedido = precioDePedido;
+            this.ramo= ramo;
+    }
     
     public int getPrioridad() {
         return prioridad;
@@ -27,8 +29,8 @@ public class Cliente{
         return ID;
     }
 
-    public void setID() {
-        this.ID = ID;
+    public void setID(int ID) {
+            this.ID = ID;
     }
 
     public String getNombre() {
@@ -63,11 +65,30 @@ public class Cliente{
         this.fecha = fecha;
     }
 
+    public String getRamo() {
+        return ramo;
+    }
+
+    public void setRamo(String ramo) {
+        this.ramo = ramo;
+    }
+    
+    public double getPrecioDePedido() {
+        return precioDePedido;
+    }
+    
+    public void setPrecioDePedido(double precioDePedido) {
+        this.precioDePedido = precioDePedido;
+    }
+
+    
+
     public String toString() {
         return "Cliente{" +  "ID=" + ID + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
     }
 
     public int comparacion(Cliente otroCliente){
         return Integer.compare(this.prioridad, otroCliente.prioridad);
-    }
+    }  
+
 }
