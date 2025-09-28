@@ -189,7 +189,6 @@ public class Main {
                         }
                         int prioridad = (urgente == 1) ? 1 : 2;
                         
-                        
                         String ramo = nombreRamo;
                         
                         Cliente cliente = new Cliente(nombre, direccion, telefono, prioridad, precioPedido,ramo);
@@ -283,7 +282,6 @@ public class Main {
                         List<Cliente> pedidosP1 = new ArrayList<>();
                         List<Cliente> pedidosP2 = new ArrayList<>();
     
-                        // Separa los pedidos por prioridad
                         for (int i = 0; i < pedidos.getSize(); i++) {
                             PriorityNode<Cliente> p = pedidos.getDatos()[i];
                             if (p != null) {
@@ -423,33 +421,40 @@ public class Main {
                     }
                     break;
                 
-                case 8:
+                    case 8:
                     System.out.println(ANSI_AZUL + "\n=== Historial de Pedidos Procesados ===" + ANSI_RESET);
                     if (pedidosProcesados.isEmpty()) {
                         System.out.println(ANSI_ROJO + "No hay pedidos procesados." + ANSI_RESET);
                         break;
                     }
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
-                    System.out.printf("| %-2s | %-25s | %-25s | %-11s | %-9s | %-30s | %-27s |\n",
+
+                    System.out.println("+----+------------------------------+------------------------------+-----------------+-----------------+-------------------------+------------------------------+");
+                    System.out.printf("| %-3s | %-30s | %-30s | %-15s | %-15s | %-23s | %-30s |\n",
                             "ID", "Nombre", "Dirección", "Teléfono", "Prioridad", "Fecha", "Ramo");
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
-                    
+                    System.out.println("+----+------------------------------+------------------------------+-----------------+-----------------+-------------------------+------------------------------+");
+
                     try {
                         Queue<Cliente> tempQueue = new Queue<>();
                         while (!pedidosProcesados.isEmpty()) {
                             Cliente c = pedidosProcesados.pop();
-                            System.out.printf("| %-2d | %-25s | %-25s | %-11s | %-9d | %-21s | %-27s |\n",
-                                    c.getID(), c.getNombre(), c.getDireccion(),
-                                    c.getTelefono(), c.getPrioridad(), c.getFecha().format(formato), c.getRamo());
+                            System.out.printf("| %-3s | %-30.30s | %-30.30s | %-15.15s | %-15.15s | %-23.23s | %-30.30s |\n",
+                                    c.getID(),
+                                    c.getNombre(),
+                                    c.getDireccion(),
+                                    c.getTelefono(),
+                                    c.getPrioridad(),
+                                    c.getFecha().format(formato),
+                                    c.getRamo());
                             tempQueue.push(c);
                         }
                         pedidosProcesados = tempQueue;
                     } catch (Exception e) {
                         System.out.println(ANSI_ROJO + "Error al mostrar historial de pedidos: " + e.getMessage() + ANSI_RESET);
                     }
-                    
-                    System.out.println("+----+---------------------------+---------------------------+-------------+-----------+-----------------------+-----------------------------+");
+
+                    System.out.println("+----+------------------------------+------------------------------+-----------------+-----------------+-------------------------+------------------------------+");
                     break;
+
                     
                 case 9:
                     System.out.println(ANSI_AZUL + "\n=== Ganancias Totales ===" + ANSI_RESET);
