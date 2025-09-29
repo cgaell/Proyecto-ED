@@ -75,10 +75,12 @@ public class Node<T> {
         }
         return false;
     }
-    public void imprimirArbol(String arbol) {
-    System.out.println(arbol + datos);  
-    for (Node<T> hijo : hijos) {
-        hijo.imprimirArbol(arbol + "  "); 
+    public void imprimirArbol(String prefijo) {
+        System.out.println(prefijo + datos);
+        for (int i = 0; i < hijos.size(); i++) {
+            System.out.println(prefijo + "\n |");
+            
+            hijos.get(i).imprimirArbol(prefijo + "   ");
         }
     }
 

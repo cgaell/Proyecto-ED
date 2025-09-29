@@ -474,7 +474,68 @@ public class Main {
     
     
         case 2:
+            boolean salirmenu2 = false;
+            while (!salirmenu2){
+            System.out.println("\n" + ANSI_AMARILLO + "==================================================" + ANSI_RESET);
+            System.out.println(ANSI_AMARILLO + "              GESTION DE EMPLEADOS     " + ANSI_RESET);
+            System.out.println(ANSI_AMARILLO + "==================================================" + ANSI_RESET);
+            System.out.println("| 1. Consultar todos los departamentos              |");
+            System.out.println("| 2. Agregar departamento nuevo                     |");
+            System.out.println("| 3. Consultar empleados por departamento           |");
+            System.out.println("| 4. Agregar empleado                               |");
+            System.out.println("| 5. Buscar empleado                                |");
+            System.out.println("| 0. Volver al menu principal                       |");
+            System.out.println(ANSI_AMARILLO + "=============================================================" + ANSI_RESET);
+            System.out.print("Selecciona una opcion: ");
+            int opcionmenu2 = 0;
+            try {
+                opcionmenu2 = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 5." + ANSI_RESET);
+                sc.nextLine();    
+                continue;
+            }
+            sc.nextLine(); 
+            switch (opcionmenu2) {
+                case 1:
+                Node<String> arbolEmpresa = new Node<>(" GMC- CEO de la empresa");
+                Node<String> distribuidor = new Node<>("Distribuidor");
+                distribuidor.agregarHijos(new Node<String>("------ Gael"));
+                Node<String> vendedor = new Node<>("Vendedor");
+                vendedor.agregarHijos(new Node<String>("------ Carlos"));
+                Node <String> comprador = new Node<>("Comprador");
+                comprador.agregarHijos(new Node<String>("------ Mauricio"));
+                arbolEmpresa.agregarHijos(distribuidor);
+                arbolEmpresa.agregarHijos(vendedor);
+                arbolEmpresa.agregarHijos(comprador);
+                    System.out.println(ANSI_AMARILLO + "Todos los empleados:" + ANSI_RESET);
+                    arbolEmpresa.imprimirArbol("");
+                    break;
+
+                case 2:
+                //logica del caso 2
+
+                case 3:
+                //logica del caso 3
+
+                case 4:
+                //logica del caso 4
+
+                case 5:
+                //logica del caso 5
+                
+                case 0:
+                salirmenu2 = true;
+                    System.out.println(ANSI_AMARILLO + "\nSalida al menu principal..." + ANSI_RESET);
+                    break;
+            
+                default:
+                System.out.println(ANSI_ROJO + "Opción no válida." + ANSI_RESET);
+                    break;
+            }
+            }
         break;
+            
 
         case 0:
         salir = true;
@@ -486,3 +547,4 @@ public class Main {
 }
     }
 }
+
