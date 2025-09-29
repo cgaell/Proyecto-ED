@@ -150,23 +150,29 @@ public class Main {
 
                         System.out.println("Selecciona el tipo de ramo:");
 
+                        List<Flores<String>> floresEnCatalogo = new ArrayList<>();
+                        System.out.println(ANSI_AZUL + "\n=== Catálogo de Flores ===" + ANSI_RESET);
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                        System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
+                                "ID", "Nombre", "Cantidad", "Tipo", "Precio");
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
 
                         int index = 1;
-                        Node<Flores<String>> nodoActual = null;
-                        
-                        List<Flores<String>> floresEnCatalogo = new ArrayList<>();
+                        Node<Flores<String>> nodoActual;
                         for (int i = 0; i < catalogo.getTabla().length; i++) {
                             nodoActual = catalogo.getTabla()[i].getCabeza();
                             while (nodoActual != null) {
                                 Flores<String> f = nodoActual.getDatos();
-                                System.out.println(index + ". " + f.getNombre() + " - $" + f.getPrecio());
                                 floresEnCatalogo.add(f);
+                                System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
+                                        index, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
                                 nodoActual = nodoActual.getNext();
                                 index++;
                             }
                         }
-
-                        System.out.print("Número de ramo: ");
+                        System.out.println("+----+-----------------------------+-----------+----------------+---------+");
+                        System.out.print("Selecciona un ramo (1-16): ");
+                        
                         int indiceRamo = sc.nextInt();
                         sc.nextLine();
 
