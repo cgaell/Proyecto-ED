@@ -3,7 +3,7 @@ public class PriorityQueue<T> {
     private int size;
 
     public PriorityQueue() { // Tamaño inicial
-        this.datos = new PriorityNode[99]; // Tamaño inicial
+        this.datos = new PriorityNode[100]; // Tamaño inicial
         this.size = 0;
     }
 
