@@ -15,12 +15,12 @@ public class Ordenar {
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (asc) { // menor a mayor
+            if (asc) { 
                 if (lista.get(j).getPrecio() <= pivot) {
                     i++;
                     Collections.swap(lista, i, j);
                 }
-            } else { // mayor a menor
+            } else { 
                 if (lista.get(j).getPrecio() >= pivot) {
                     i++;
                     Collections.swap(lista, i, j);
