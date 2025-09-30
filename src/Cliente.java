@@ -10,6 +10,14 @@ public class Cliente{
     private double precioDePedido;
     private String ramo;
     
+        /**contructor parametrado
+         * @param nombre nombre del cliente
+         * @param direccion del cliente
+         * @param telefono del cliente
+         * @param prioridad del pedido
+         * @param precioDePedido precio del pedido
+         * @param ramo ramo elegido
+         */
         public Cliente(String nombre, String direccion, String telefono, int prioridad, double precioDePedido, String ramo) {  
             this.ID = cont++;    
             this.nombre = nombre;
@@ -87,6 +95,10 @@ public class Cliente{
         return "Cliente{" +  "ID=" + ID + "nombre='" + nombre + '\'' + ", direccion='" + direccion + '\'' + ", telefono='" + telefono + '\'' + '}';
     }
 
+    /** comparar que pedido es mas urgente que el otro
+     * @param otroCliente objeto que toma en cuenta para comparar
+     * @return la comparacion
+     */
     public int comparacion(Cliente otroCliente){
         return Integer.compare(this.prioridad, otroCliente.prioridad);
     }  

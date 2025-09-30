@@ -10,6 +10,12 @@ public class Flores<T> {
     private T tipoDeFlor;
     private double precio;
 
+    /** constructor parametrado
+     * @param nombre del ramo
+     * @param cantidad de ramos en el inventario
+     * @param tipoDeFlor tipo de flor q se usa
+     * @param precio del ramo
+     */
     public Flores(String nombre, int cantidad, T tipoDeFlor, double precio) {
         this.nombre = nombre;
         this.cantidad = cantidad;

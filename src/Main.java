@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random; 
 
 public class Main {
-    // Colores ANSI para consola
+   
     static Node<Cliente> arbolpedidos = null;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_ROJO = "\u001B[31m";
@@ -614,8 +614,24 @@ public class Main {
                 break;
 
                 case 5:
-                //logica del caso 5
+                System.out.print("Ingresa el empleado que deseas consultar: ");
+                String empleadoBuscar = sc.nextLine().trim();
+
+                if (empleadoBuscar.isEmpty()){
+                    System.out.println(ANSI_ROJO + "El nombre del empleado no puede estar vacio" + ANSI_RESET);
+                }
+
+                boolean empleadoEncontrado = false;
                 
+                for (Node<String> departamento : arbolEmpresa.getHijos()){
+                    empleadoEncontrado = arbolEmpresa.buscarempleado(arbolEmpresa, empleadoBuscar);
+                    if (empleadoEncontrado) break;
+                }
+                
+                if (!empleadoEncontrado){
+                    System.out.println(ANSI_ROJO + "No se ha logrado encontrar el empleado." + ANSI_RESET);
+                }
+                break;
                 case 6:
                 //logica del caso 6
                 

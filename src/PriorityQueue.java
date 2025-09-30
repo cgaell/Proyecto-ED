@@ -144,8 +144,12 @@ public void setSize(int size) {
 
 
 
+/** metodo para buscar en la fila por ID unico
+ * @param id a buscar
+ * @return cliente que se encontro, de lo contrario un null
+ */
 public T buscarPorID(int id) {
-    for (int i = 0; i < size; i++) { // solo hasta size
+    for (int i = 0; i < size; i++) { // solo hasta el tamaño de la fila
         if (datos[i] != null) {
             T elemento = datos[i].getDatos();
             if (elemento instanceof Cliente) {
