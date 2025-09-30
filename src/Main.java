@@ -500,6 +500,16 @@ public class Main {
     
         case 2:
             boolean salirmenu2 = false;
+            Node<String> arbolEmpresa = new Node<>(" GMC- CEO de la empresa");
+            Node<String> distribuidor = new Node<>("Distribuidor");
+            distribuidor.agregarHijos(new Node<String>("------ Gael"));
+            Node<String> vendedor = new Node<>("Vendedor");
+            vendedor.agregarHijos(new Node<String>("------ Carlos"));
+            Node <String> comprador = new Node<>("Comprador");
+            comprador.agregarHijos(new Node<String>("------ Mauricio"));
+            arbolEmpresa.agregarHijos(distribuidor);
+            arbolEmpresa.agregarHijos(vendedor);
+            arbolEmpresa.agregarHijos(comprador);
             while (!salirmenu2){
             System.out.println("\n" + ANSI_AMARILLO + "==================================================" + ANSI_RESET);
             System.out.println(ANSI_AMARILLO + "              GESTION DE EMPLEADOS     " + ANSI_RESET);
@@ -507,8 +517,9 @@ public class Main {
             System.out.println("| 1. Consultar todos los departamentos              |");
             System.out.println("| 2. Agregar departamento nuevo                     |");
             System.out.println("| 3. Consultar empleados por departamento           |");
-            System.out.println("| 4. Agregar empleado                               |");
+            System.out.println("| 4. Agregar empleado a un departamento             |");
             System.out.println("| 5. Buscar empleado                                |");
+            System.out.println("| 6. Eliminar empleado                              |");
             System.out.println("| 0. Volver al menu principal                       |");
             System.out.println(ANSI_AMARILLO + "=============================================================" + ANSI_RESET);
             System.out.print("Selecciona una opcion: ");
@@ -523,31 +534,85 @@ public class Main {
             sc.nextLine(); 
             switch (opcionmenu2) {
                 case 1:
-                Node<String> arbolEmpresa = new Node<>(" GMC- CEO de la empresa");
-                Node<String> distribuidor = new Node<>("Distribuidor");
-                distribuidor.agregarHijos(new Node<String>("------ Gael"));
-                Node<String> vendedor = new Node<>("Vendedor");
-                vendedor.agregarHijos(new Node<String>("------ Carlos"));
-                Node <String> comprador = new Node<>("Comprador");
-                comprador.agregarHijos(new Node<String>("------ Mauricio"));
-                arbolEmpresa.agregarHijos(distribuidor);
-                arbolEmpresa.agregarHijos(vendedor);
-                arbolEmpresa.agregarHijos(comprador);
                     System.out.println(ANSI_AMARILLO + "Todos los empleados:" + ANSI_RESET);
                     arbolEmpresa.imprimirArbol("");
                     break;
 
                 case 2:
-                //logica del caso 2
+                System.out.print("Ingresa el nombre del nuevo departamento: ");
+                String nombre = sc.nextLine().trim();
+
+                if (!nombre.isEmpty()) {
+                    Node<String> nuevoDepto = new Node<>(nombre);
+                    arbolEmpresa.agregarHijos(nuevoDepto);
+                    System.out.println(ANSI_AMARILLO + "Departamento '" + nombre + "' agregado correctamente." + ANSI_RESET);
+                } else {
+                    System.out.println(ANSI_ROJO + "Error: El nombre del departamento no puede estar vacío." + ANSI_RESET);
+                }
+                break;
 
                 case 3:
-                //logica del caso 3
+                System.out.println("Lista de departamentos: ");
+                for (Node<String> departamento : arbolEmpresa.getHijos()){
+                    System.out.println(departamento.getDatos());
+                }
 
+                System.out.print("Ingresa el departamento que deseas consultar: ");
+                String depabuscado = sc.nextLine().trim();
+
+                Node<String> depaNodo = null;
+                for (Node<String> depa : arbolEmpresa.getHijos()){
+                    if (depa.getDatos().equalsIgnoreCase(depabuscado)){
+                        depaNodo = depa;
+                        break;
+                }
+                }
+                if (depaNodo!= null){
+                    System.out.println(ANSI_AMARILLO + "Empleados listados en " + depaNodo.getDatos() + ": " + ANSI_RESET);
+                    for (Node<String> empleados : depaNodo.getHijos()){
+                        System.out.println(empleados.getDatos());
+                    }
+                } else {
+                    System.out.println(ANSI_ROJO + "No se encontro el departamento solicitado" + " " + depabuscado + "." + ANSI_RESET);
+                }
+                break;
                 case 4:
-                //logica del caso 4
+                System.out.println("Lista de departamentos: ");
+                for (Node<String> departamento : arbolEmpresa.getHijos()){
+                    System.out.println(departamento.getDatos());
+                }
+
+                System.out.print("Ingresa el nombre del departamento donde quieres ingresar al empleado: ");
+                String depaSc = sc.nextLine().trim();
+
+                Node<String> depaSolicitado = null;
+                for (Node<String> depa : arbolEmpresa.getHijos()){
+                    if (depa.getDatos().equalsIgnoreCase(depaSc)){
+                        depaSolicitado = depa;
+                        break;
+                }
+                }
+                if (depaSolicitado != null) {
+                
+                System.out.print("Ingresa el nombre del nuevo empleado: ");
+                String nombreEmpleado = sc.nextLine().trim();
+
+                if (!nombreEmpleado.isEmpty()) {
+                    depaSolicitado.agregarHijos(new Node<String>("------ " + nombreEmpleado));
+                    System.out.println(ANSI_AMARILLO + "Empleado '" + nombreEmpleado + "' agregado correctamente a " + depaSolicitado.getDatos() + "." + ANSI_RESET);
+                } else {
+                    System.out.println(ANSI_ROJO + "Error: El nombre del empleado no puede estar vacío." + ANSI_RESET);
+                }
+            } else {
+                System.out.println(ANSI_ROJO + "No se encontró el departamento '" + depaSc + "'." + ANSI_RESET);
+            }
+            break;
 
                 case 5:
                 //logica del caso 5
+                
+                case 6:
+                //logica del caso 6
                 
                 case 0:
                 salirmenu2 = true;
