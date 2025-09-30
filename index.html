@@ -140,7 +140,7 @@
           <summary>𝟐. 𝐂𝐨𝐬𝐚𝐬 𝐪𝐮𝐞 𝐧𝐞𝐜𝐞𝐬𝐢𝐭𝐚𝐬 𝐚𝐧𝐭𝐞𝐬 𝐝𝐞 𝐞𝐦𝐩𝐞𝐳𝐚𝐫</summary>
           <div class="panel">
             <ul>
-              <li><strong>Java 8 o más nuevo</strong>. Para revisar: <pre>java -version</pre></li>
+              <li><strong>Java 11 o más nuevo</strong>. Para revisar: <pre>java -version</pre></li>
               <li>Archivos <code>.java</code> del proyecto:
                 <pre>Stack.java
 Queue.java
@@ -150,7 +150,7 @@ Cliente.java
 Flores.java
 HashTable.java
 Node.java
-Floresapp.html
+Ordenar.java
 SimpleLinkedList.java
 Main.java</pre>
               </li>
@@ -161,7 +161,7 @@ Main.java</pre>
         <details style="width:calc(100% - 32px); margin:12px 16px;">
           <summary>𝟑. 𝐏𝐫𝐞𝐩𝐚𝐫𝐚𝐫 𝐥𝐚 𝐜𝐚𝐫𝐩𝐞𝐭𝐚</summary>
           <div class="panel">
-            <p>1. Crea una carpeta en tu Escritorio llamada <strong>Floresapp</strong>.</p>
+            <p>1. Crea una carpeta en tu Escritorio llamada <strong>FLoreriaGmc</strong>.</p>
             <p>2. Mete todos los archivos <code>.java</code> dentro de esa carpeta.</p>
           </div>
         </details>
@@ -170,7 +170,7 @@ Main.java</pre>
           <summary>𝟒. 𝐂𝐨𝐦𝐩𝐢𝐥𝐚𝐫 𝐞𝐥 𝐩𝐫𝐨𝐠𝐫𝐚𝐦𝐚</summary>
           <div class="panel">
             <p>Abre la terminal y escribe:</p>
-            <pre>cd ~/Desktop/FloresApp
+            <pre>cd ~/Desktop/FloreriaGmc
 javac *.java</pre>
             <p>Si no aparece nada, significa que todo salió bien</p>
           </div>
@@ -192,43 +192,87 @@ javac *.java</pre>
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>1) Realizar pedido</strong> → Escribe nombre, teléfono, dirección, flor y si es urgente.
         El sistema <b>crea un ID automático</b> y <b>guarda fecha y hora</b>.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====          | 1. Realizar pedido  |
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>2) Eliminar pedido por ID</strong> → Escribe el <b>ID</b> del pedido para borrarlo si existe.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====        | 2. Eliminar pedido por ID  |        
       </li>
+    
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>3) Consultar catálogo de flores (con filtros)</strong> → Elige:
         1 <i>(Mayor a menor)</i>, 2 <i>(Menor a mayor)</i>, 3 <i>(Default)</i>.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 3. Consultar catálogo de flores |
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>4) Mostrar todos los pedidos</strong> → Lista todos (pendientes).
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 4. Mostrar Todos los Pedidos|
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>5) Ver información de la empresa</strong> → Muestra un <b>árbol</b> con departamentos/roles.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 5. Ver información de la Empresa |
+      </li>
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>6) Buscar pedido por ID</strong> → Escribe el <b>ID</b> y te muestra los datos del pedido.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 6. Buscar pedido por id |
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>7) Procesar pedido por ID</strong> → Marca el pedido como <b>realizado</b> y guarda la <b>fecha/hora</b>.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 7. Procesar pedido por id |
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>8) Ver historial de pedidos procesados</strong> → Lista los pedidos ya <b>realizados</b> con su fecha.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 8. Ver historial de pedidos procesados|
+      </li>
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>9) Ver ganancias totales</strong> → Muestra la suma $ de los pedidos <b>procesados</b>.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 9. Ver ganancias totales |
       </li>
 
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>0) Volver</strong> → Regresas al menú anterior cuando quieras.
+        <details style="width:calc(100% - 32px); margin:12px 16px;">
+          <summary> 𝐄𝐣𝐞𝐦𝐩𝐥𝐨 𝐝𝐞 𝐥𝐚 𝐢𝐧𝐭𝐞𝐫𝐟𝐚𝐳</summary>
+          <div class="panel">
+            <pre> ===== FLORERIA GMC =====           | 0. volver|
+      </li>
       </li>
       <!-- SUB-BOTÓN: Opcional Departamentos (dentro del Panel 6) -->
       <details style="width:calc(100% - 32px); margin:12px 16px;">
