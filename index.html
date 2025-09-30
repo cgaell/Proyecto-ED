@@ -281,7 +281,7 @@ javac *.java</pre>
       <li><b>Cola (FIFO)</b> (Queue): almacena <b>pedidos normales</b> en orden de llegada; se atienden primero los que llegaron antes.</li>
       <li><b>Cola con prioridad</b> (PriorityQueue/PriorityNode): guarda <b>pedidos urgentes</b>; estos se atienden antes que los normales.</li>
       <li><b>Tabla Hash</b> (HashTable): índice por <b>ID</b> del cliente/pedido para <b>buscar</b> y <b>eliminar</b> muy rápido.</li>
-      <li><b>Ordenamiento sencillo</b> (burbuja/compare-swap): organiza el catálogo <b>por precio</b> (menor→mayor, mayor→menor o default).</li>
+      <li><b>Ordenamiento QuickSort</b>: organiza el catálogo <b>por precio</b> (menor→mayor, mayor→menor o default).</li>
       <li><b>Clases de dominio</b> (Cliente, Flores): modelan la <b>información</b> básica del sistema.</li>
       <li><b>Main</b>: muestra el <b>menú</b>, lee opciones y conecta todo (coordinación del flujo).</li>
     </ul>
@@ -299,7 +299,7 @@ javac *.java</pre>
 </ul>
 <p>
   Con un <b>bucle for</b> creamos <b>100 clientes</b> de prueba combinando esos arreglos.
-  Así el sistema tiene información lista para probar el menú (hacer pedidos, buscar por ID, procesar, etc.).
+  Así el sistema tiene información lista para probar el menú (hacer pedidos, buscar por ID, procesar, consultar ingresos, etc.).
 </p>
 
   </div>
