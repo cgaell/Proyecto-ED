@@ -251,23 +251,42 @@ public class Main {
 
 
                 case 3:
+                    System.out.println(ANSI_AZUL + "Como quieres mostrarlo?" + ANSI_RESET);
+                    System.out.println("| 1. Precio de mayor a menor     |");
+                    System.out.println("| 2. Precio de menor a mayor     |");
+                    System.out.println("| 3. Mostrar por default         |");
+                    System.out.print("Selecciona una opcion: ");
+                    int orden = sc.nextInt();
+
+                    boolean ascendente = (orden == 2);
+
+                    List<Flores<String>> listaFlores = new ArrayList<>();
+                    for (int i = 0; i < catalogo.getTabla().length; i++) {
+                            Node<Flores<String>> nodo = catalogo.getTabla()[i].getCabeza();
+                        while (nodo != null) {
+                            listaFlores.add(nodo.getDatos());
+                            nodo = nodo.getNext();
+                        }
+                    }
+
+                    
+                    if (orden == 1 || orden == 2) {
+                        Ordenar.quickSort(listaFlores, 0, listaFlores.size() - 1, ascendente);
+                    }
+
                     System.out.println(ANSI_AZUL + "\n=== Catálogo de Flores ===" + ANSI_RESET);
                     System.out.println("+----+-----------------------------+-----------+----------------+---------+");
                     System.out.printf("| %-2s | %-27s | %-9s | %-14s | %-7s |\n",
                             "ID", "Nombre", "Cantidad", "Tipo", "Precio");
                     System.out.println("+----+-----------------------------+-----------+----------------+---------+");
-                     int contador = 1;
-                    Node<Flores<String>> nodo;
-                    for (int i = 0; i < catalogo.getTabla().length; i++) {
-                        nodo = catalogo.getTabla()[i].getCabeza();
-                        while (nodo != null) {
-                            Flores<String> f = nodo.getDatos();
+                    
+
+                    int contador = 1;
+                    for (Flores<String> f : listaFlores) {
                             System.out.printf("| %-2d | %-27s | %-9d | %-14s | $%-6.2f |\n",
-                                contador, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
-                                nodo = nodo.getNext();
-                                contador++;
-                            }
-                        }
+                            contador, f.getNombre(), f.getCantidad(), f.getTipoDeFlor(), f.getPrecio());
+                            contador++;
+                    }
 
                         System.out.println("+----+-----------------------------+-----------+----------------+---------+");
                         break;
