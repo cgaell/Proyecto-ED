@@ -414,7 +414,7 @@ public class Main {
                                 System.out.println("Nombre: " + clienteProcesado.getNombre());
                                 System.out.println("Dirección: " + clienteProcesado.getDireccion());
                                 System.out.println("Teléfono: " + clienteProcesado.getTelefono());
-                                System.out.println("Ramo elejido: " + clienteProcesado.getRamo()); 
+                                System.out.println("Ramo elegido: " + clienteProcesado.getRamo()); 
                                 System.out.println("Prioridad: " + p.getPriority());
                                 System.out.println("Fecha: " + clienteProcesado.getFecha().format(formato));
                                 System.out.println("Precio: $" + clienteProcesado.getPrecioDePedido());
