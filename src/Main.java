@@ -527,7 +527,7 @@ public class Main {
             try {
                 opcionmenu2 = sc.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 5." + ANSI_RESET);
+                System.out.println(ANSI_ROJO + "Error: Debes ingresar un número del 1 al 6." + ANSI_RESET);
                 sc.nextLine();    
                 continue;
             }
