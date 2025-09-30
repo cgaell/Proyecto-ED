@@ -230,6 +230,45 @@ javac *.java</pre>
       <li style="background:#f0f0f0; margin:10px 0; padding:16px 20px; border-radius:10px; border-left:5px solid #4CAF50; box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:16px; line-height:1.5;">
         <strong>0) Volver</strong> → Regresas al menú anterior cuando quieras.
       </li>
+      <!-- SUB-BOTÓN: Opcional Departamentos (dentro del Panel 6) -->
+      <details style="width:calc(100% - 32px); margin:12px 16px;">
+        <summary><strong>Opcional: Departamentos</strong></summary>
+        <div class="panel">
+          <p>
+            Si eliges el módulo <b>Departamentos</b> en el menú principal, verás su propio menú para
+            <b>consultar</b>, <b>agregar</b> y <b>buscar/eliminar</b> empleados por departamento.
+            Aquí te explico cómo usarlo, paso a paso:
+          </p>
+
+          <ol>
+            <li><b>Consultar todos</b>: imprime el <b>árbol</b> con la empresa (raíz),
+              los <b>departamentos</b> y sus <b>empleados</b> con sangrados. Útil para ver todo de un vistazo.</li>
+            <li><b>Agregar departamento</b>: escribe el nombre (ej. “Recursos Humanos”).
+              Se agregará como hijo de la empresa (primer nivel).</li>
+            <li><b>Consultar empleados por departamento</b>: elige un departamento por <b>nombre</b>
+              para ver la lista de sus empleados.</li>
+            <li><b>Agregar empleado</b>: elige un departamento por <b>número</b> (te los lista) y escribe el nombre del empleado.</li>
+            <li><b>Buscar empleado</b>: escribe el <b>nombre</b>; el sistema recorre todos los departamentos y te dice si existe.</li>
+            <li><b>Eliminar empleado</b>: escribe el <b>nombre</b>; si existe en algún departamento, lo quita.</li>
+            <li><b>0. Volver</b>: regresa al menú principal.</li>
+          </ol>
+
+          <p><b>Menú de Departamentos (vista en consola):</b></p>
+<pre>--- Dentro de "Departamentos" ---
+| 1. Consultar todos                             |
+| 2. Agregar departamento                        |
+| 3. Consultar empleados por departamento        |
+| 4. Agregar empleado                            |
+| 5. Buscar empleado                             |
+| 6. Eliminar empleado                           |
+| 0. Volver                                      |</pre>
+
+          <p>
+            <b>Tips:</b> Los mensajes en <b>amarillo</b> confirman acciones correctas; en <b>rojo</b>,
+            te avisan de errores (por ejemplo, nombre vacío o número fuera de rango).
+          </p>
+        </div>
+      </details>
 
     </ul>
   </div>
@@ -403,6 +442,34 @@ javac *.java</pre>
 </div>
 
     </div>
+          <!-- NUEVO BLOQUE TÉCNICO: Departamentos (Árbol) -->
+      <details style="width:calc(100% - 32px); margin:12px 16px;">
+        <summary><strong>Departamentos (Árbol) – Técnico</strong></summary>
+        <div class="panel">
+          <p>
+            La estructura de <b>Departamentos</b> usa un <b>árbol genérico</b> con <code>Node&lt;String&gt;</code>:
+            la <b>raíz</b> es la empresa (CEO), sus <b>hijos</b> son los <b>departamentos</b>, y los
+            <b>hijos de cada departamento</b> son los <b>empleados</b>.
+          </p>
+          <ul>
+            <li><b>Agregar departamento</b>: <code>raiz.agregarHijos(new Node&lt;&gt;("NombreDepto"))</code></li>
+            <li><b>Agregar empleado</b>: <code>depto.agregarHijos(new Node&lt;&gt;("NombreEmpleado"))</code></li>
+            <li><b>Consultar todos</b>: <code>raiz.imprimirArbol("")</code> (recorrido en profundidad con sangrados)</li>
+            <li><b>Consultar empleados de un depto</b>: leer <code>raiz.getHijos()</code>, ubicar el departamento por nombre y listar sus hijos</li>
+            <li><b>Buscar / Eliminar empleado</b>: recorrido en profundidad
+              (<code>buscarPorNombre</code> / <code>eliminarPorNombre</code>) sobre el árbol</li>
+          </ul>
+          <p>
+            <b>Complejidad:</b> la mayoría de operaciones son O(n) en el peor caso (recorridos del árbol).
+            Es suficiente y claro para un número pequeño/medio de departamentos y empleados.
+          </p>
+          <p>
+            <b>Integración en Main:</b> el submenú de Departamentos mapea cada opción del usuario a estas
+            operaciones del árbol sin mezclar lógica de pedidos.
+          </p>
+        </div>
+      </details>
+
   </details>
 
 </div>
