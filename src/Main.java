@@ -577,36 +577,41 @@ public class Main {
                 }
                 break;
                 case 4:
-                System.out.println("Lista de departamentos: ");
-                for (Node<String> departamento : arbolEmpresa.getHijos()){
-                    System.out.println(departamento.getDatos());
+                System.out.println("Lista de departamentos disponibles para agregar empleado:");
+                int deptoIndex = 1;
+                for (Node<String> departamento : arbolEmpresa.getHijos()) {
+                    System.out.println(deptoIndex + ". " + departamento.getDatos());
+                    deptoIndex++;
                 }
 
-                System.out.print("Ingresa el nombre del departamento donde quieres ingresar al empleado: ");
-                String depaSc = sc.nextLine().trim();
+                System.out.print("Ingresa el número del departamento al que quieres agregar un empleado: ");
+                int deptoSeleccionado;
+                try {
+                    deptoSeleccionado = sc.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println(ANSI_ROJO + "Error: Entrada inválida. Ingresa un número." + ANSI_RESET);
+                    sc.nextLine();
+                    break;
+                }
+                sc.nextLine();
 
-                Node<String> depaSolicitado = null;
-                for (Node<String> depa : arbolEmpresa.getHijos()){
-                    if (depa.getDatos().equalsIgnoreCase(depaSc)){
-                        depaSolicitado = depa;
-                        break;
+                if (deptoSeleccionado < 1 || deptoSeleccionado > arbolEmpresa.getHijos().size()) {
+                    System.out.println(ANSI_ROJO + "Número de departamento inválido." + ANSI_RESET);
+                    break;
                 }
-                }
-                if (depaSolicitado != null) {
+
+                Node<String> targetDepto = arbolEmpresa.getHijos().get(deptoSeleccionado - 1);
                 
                 System.out.print("Ingresa el nombre del nuevo empleado: ");
                 String nombreEmpleado = sc.nextLine().trim();
-
+                
                 if (!nombreEmpleado.isEmpty()) {
-                    depaSolicitado.agregarHijos(new Node<String>("------ " + nombreEmpleado));
-                    System.out.println(ANSI_AMARILLO + "Empleado '" + nombreEmpleado + "' agregado correctamente a " + depaSolicitado.getDatos() + "." + ANSI_RESET);
+                    targetDepto.agregarHijos(new Node<String>("------ " + nombreEmpleado));
+                    System.out.println(ANSI_AMARILLO + "Empleado '" + nombreEmpleado + "' agregado a '" + targetDepto.getDatos() + "'." + ANSI_RESET);
                 } else {
                     System.out.println(ANSI_ROJO + "Error: El nombre del empleado no puede estar vacío." + ANSI_RESET);
                 }
-            } else {
-                System.out.println(ANSI_ROJO + "No se encontró el departamento '" + depaSc + "'." + ANSI_RESET);
-            }
-            break;
+                break;
 
                 case 5:
                 //logica del caso 5
@@ -637,4 +642,3 @@ public class Main {
 }
     }
 }
-
