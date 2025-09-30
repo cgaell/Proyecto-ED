@@ -633,7 +633,39 @@ public class Main {
                 }
                 break;
                 case 6:
-                //logica del caso 6
+                System.out.print("Ingresa el nombre del empleado que deseas eliminar: ");
+                String empleadoEliminar = sc.nextLine().trim();
+
+                if (empleadoEliminar.isEmpty()) {
+                    System.out.println(ANSI_ROJO + "El nombre del empleado no puede estar vacío." + ANSI_RESET);
+                    break;
+                }
+
+                boolean eliminado = false;
+
+                
+                for (Node<String> departamento : arbolEmpresa.getHijos()) {
+                    
+                    for (int i = 0; i < departamento.getHijos().size(); i++) {
+                        Node<String> empleado = departamento.getHijos().get(i);
+                        String nomEmpleado = empleado.getDatos().replace("------ ", "").trim();
+
+                        if (nomEmpleado.equalsIgnoreCase(empleadoEliminar)) {
+                            departamento.getHijos().remove(i); 
+                            System.out.println(ANSI_AMARILLO + "Empleado " + empleadoEliminar + " eliminado del departamento " 
+                                                + departamento.getDatos() + "'." + ANSI_RESET);
+                            eliminado = true;
+                            break; 
+                        }
+                    }
+                    if (eliminado) break; 
+                }
+
+                if (!eliminado) {
+                    System.out.println(ANSI_ROJO + "No se encontró al empleado " + empleadoEliminar + " en ningún departamento." + ANSI_RESET);
+                }
+                break;
+
                 
                 case 0:
                 salirmenu2 = true;
