@@ -382,7 +382,7 @@ public class Main {
                             System.out.println("Nombre: " + encontradoBusqueda.getNombre()); 
                             System.out.println("Dirección: " + encontradoBusqueda.getDireccion()); 
                             System.out.println("Teléfono: " + encontradoBusqueda.getTelefono()); 
-                            System.out.println("Ramo elejido: " + encontradoBusqueda.getRamo()); 
+                            System.out.println("Ramo elegido: " + encontradoBusqueda.getRamo()); 
                             System.out.println("Prioridad: " + encontradoBusqueda.getPrioridad());
                             System.out.println("Fecha: " + encontradoBusqueda.getFecha().format(formato));
                             System.out.println("Precio: $" + encontradoBusqueda.getPrecioDePedido());
