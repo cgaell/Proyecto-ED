@@ -60,3 +60,40 @@ __O también intentar__:
  ``` bash
 java Main.java
  ```
+
+Actualización (Florería GMC)
+Novedades
+
+ID automático y fecha/hora al crear y procesar pedidos.
+
+Búsqueda / eliminación por ID (vía HashTable).
+
+Catálogo con filtros por precio: menor→mayor, mayor→menor o default.
+
+Datos de prueba: se generan 100 clientes con arreglos y un for.
+
+Estructuras usadas
+
+PriorityQueue: pedidos urgentes primero.
+
+Queue: pedidos normales (FIFO).
+
+HashTable: índice por ID (buscar/eliminar rápido).
+
+SimpleLinkedList: catálogo de flores (recorrer/ordenar).
+
+Stack (si aplica): historial.
+
+Menú actualizado (9 opciones)
+
+1. Realizar pedido
+2. Eliminar pedido por ID
+3. Consultar catálogo de flores
+4. Mostrar todos los pedidos
+5. Ver historial de pedidos
+6. Procesar pedido
+7. Ver información de la empresa
+8. Buscar cliente/pedido por ID
+9. Filtrar/Ordenar catálogo (asc/desc/default)
+0. Salir
+
